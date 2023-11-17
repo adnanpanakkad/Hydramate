@@ -2,7 +2,9 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:water_tracking_app/Screens/Achive_page.dart';
 import 'package:water_tracking_app/Screens/addwatergoal.dart';
 import 'package:water_tracking_app/Screens/all_pages.dart';
 import 'package:water_tracking_app/Screens/bmi_screen.dart';
@@ -20,6 +22,29 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final TextEditingController _heightController = TextEditingController();
   final TextEditingController _weightController = TextEditingController();
+  double percentage = 0;
+
+  void incrementPercentage() {
+    setState(() {
+      percentage += 0.1; // You can adjust the increment value
+      if (percentage >= 1.0) {
+        percentage = 1.0; // Ensure the percentage doesn't exceed 100%
+
+        if (percentage == 1.0) {
+          ArchivePopup(context);
+        }
+      }
+    });
+  }
+
+  void decrementPercentage() {
+    setState(() {
+      percentage -= 0.1; // You can adjust the decrement value
+      if (percentage < 0.0) {
+        percentage = 0.0; // Ensure the percentage doesn't go below 0%
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +59,7 @@ class _HomePageState extends State<HomePage> {
 
       formattedTime.value = '${time.hourOfPeriod} : ${time.minute} $amPm';
     });
-
+    // double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightBlueAccent.shade100,
@@ -162,7 +187,7 @@ class _HomePageState extends State<HomePage> {
                 children: [],
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 40),
             Card(
               elevation: 5,
               shape: RoundedRectangleBorder(
@@ -200,7 +225,7 @@ class _HomePageState extends State<HomePage> {
                       top: 45,
                       left: 10,
                       child: Text(
-                        '200ml water(2 Glass)',
+                        '200ml water(1 Glass)',
                         style: TextStyle(color: Colors.grey),
                       ),
                     ),
@@ -227,55 +252,67 @@ class _HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Image.network(
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLP8GHF5FIJaeKTNDAliuvFXq2ypBHq-6mWtlifkB2rKz_z7kO4ZH41Fzlqg4hCxI170s&usqp=CAU',
-                  height: 200,
-                  width: 180,
+                Expanded(
+                  child: CircularPercentIndicator(
+                    radius: 80,
+                    lineWidth: 18.0,
+                    percent: percentage,
+                    circularStrokeCap: CircularStrokeCap.round,
+                    center: Text(
+                      '${(percentage * 100).toStringAsFixed(0)}%',
+                      style: const TextStyle(fontSize: 20.0),
+                    ),
+                    progressColor: Colors.lightBlueAccent.shade100,
+                  ),
                 ),
-                const Card(
-                  elevation: 3, // Adjust the elevation as needed
-                  child: Padding(
-                    padding: EdgeInsets.all(15),
-                    child: Row(
-                      children: [
-                        Center(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Target',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
+                const Padding(
+                  padding: EdgeInsets.only(right: 40),
+                  child: Card(
+                    elevation: 5,
+                    child: Padding(
+                      padding: EdgeInsets.all(15),
+                      child: Row(
+                        children: [
+                          Center(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Target',
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(height: 30, width: 0),
-                              // Adjust the height as needed
-                              Text(
-                                '2000ml',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
+                                SizedBox(height: 30),
+                                Text(
+                                  '2000ml',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 60),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                       backgroundColor: Colors.lightBlueAccent.shade100),
-                  onPressed: () {},
+                  onPressed: () {
+                    decrementPercentage();
+                  },
                   child: const Text(
                     '-',
                     style: TextStyle(color: Colors.white, fontSize: 30),
@@ -292,15 +329,17 @@ class _HomePageState extends State<HomePage> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                       backgroundColor: Colors.lightBlueAccent.shade100),
-                  onPressed: () {},
+                  onPressed: () {
+                    incrementPercentage();
+                  },
                   child: const Text(
                     '+',
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   )),
             ]),
             const SizedBox(height: 30),
-            const Text(
-              'You got 50% of today’s goal, keep',
+            Text(
+              'You got ${(percentage * 100).toStringAsFixed(0)}% of today’s goal, keep',
               style: TextStyle(color: Colors.grey),
             ),
             const Text('focus on your health!',
@@ -405,5 +444,17 @@ class _HomePageState extends State<HomePage> {
     double heightSquare = height * height;
     double result = weight / heightSquare;
     return result;
+  }
+
+  Future<void> ArchivePopup(BuildContext context) async {
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const AlertDialog(
+          title: Text('Congratulations!'),
+          content: Text(' Harry has archive your goal today'),
+        );
+      },
+    );
   }
 }

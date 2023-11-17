@@ -1,71 +1,79 @@
-// step_tracker.dart
 import 'package:flutter/material.dart';
-import 'package:health/health.dart';
+import 'dart:async';
+
+import 'package:sensors/sensors.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class StepTracker extends StatefulWidget {
-  const StepTracker({Key? key}) : super(key: key);
-
   @override
-  State<StepTracker> createState() => _StepTrackerState();
+  _StepTrackerState createState() => _StepTrackerState();
 }
 
 class _StepTrackerState extends State<StepTracker> {
-  int _getSteps = 0;
-
-  // create a HealthFactory for use in the app
-  HealthFactory health = HealthFactory();
+  int stepCount = 0;
+  late StreamSubscription<AccelerometerEvent> _subscription;
 
   @override
   void initState() {
     super.initState();
-    fetchStepData();
+    _checkPermission();
   }
 
-  Future<void> fetchStepData() async {
-    int? steps;
-
-    // define the types to get
-    var types = [
-      HealthDataType.STEPS,
-    ];
-
-    // get steps for today (i.e., since midnight)
-    final now = DateTime.now();
-    final midnight = DateTime(now.year, now.month, now.day);
-
-    var permissions = [
-      HealthDataAccess.READ,
-    ];
-
-    bool requested =
-        await health.requestAuthorization(types, permissions: permissions);
-
-    if (requested) {
-      try {
-        // get the number of steps for today
-        steps = await health.getTotalStepsInInterval(midnight, now);
-      } catch (error) {
-        print("Caught exception in getTotalStepsInInterval: $error");
-      }
-
-      print('Total number of steps: $steps');
-
-      setState(() {
-        _getSteps = (steps == null) ? 0 : steps;
-      });
+  // Check and request permission
+  Future<void> _checkPermission() async {
+  var status = await Permission.sensors.status;
+  if (status.isGranted) {
+    _subscribeToAccelerometer();
+  } else {
+    var result = await Permission.sensors.request();
+    if (result.isGranted) {
+      _subscribeToAccelerometer();
     } else {
-      print("Authorization not granted - error in authorization");
+      // Handle the case where permission is denied
+      print("Permission denied");
     }
+  }
+}
+  // Subscribe to accelerometer events
+void _subscribeToAccelerometer() {
+  _subscription = accelerometerEvents.listen((AccelerometerEvent event) {
+    // Assuming that positive values on the Y-axis indicate a step
+    print("Accelerometer Event: $event");
+    if (event.y > 10.0) {
+      setState(() {
+        stepCount++;
+        print("Step Count: $stepCount");
+      });
+    }
+  });
+}
+
+
+  @override
+  void dispose() {
+    _subscription.cancel();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[350],
+      appBar: AppBar(
+        title: Text('Step Tracker'),
+      ),
       body: Center(
-        child: Text(
-          'Total steps: $_getSteps',
-          style: const TextStyle(fontSize: 40),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Step Count:',
+              style: TextStyle(fontSize: 20),
+            ),
+            Text(
+              '$stepCount',
+              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+            ),
+          ],
         ),
       ),
     );

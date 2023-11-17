@@ -41,6 +41,7 @@ dependencies:
   pedometer: ^4.0.1
   percent_indicator: ^4.2.3
   permission_handler: ^11.0.1
+  sensors: ^2.0.3
   shared_preferences: ^2.2.2
   syncfusion_flutter_charts: ^23.1.44
   syncfusion_flutter_gauges: ^23.1.43

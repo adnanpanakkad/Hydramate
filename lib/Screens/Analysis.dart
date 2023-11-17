@@ -98,7 +98,7 @@ class _AnalysispageState extends State<Analysispage> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (ctx) => const StepTracker(),
+                          builder: (ctx) => StepTracker(),
                         ),
                       );
                     },

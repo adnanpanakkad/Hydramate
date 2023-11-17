@@ -47,7 +47,6 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (ctx) => const MainPage()));
     } else {
-      
       print('user not logged in');
       gotosplash();
     }
