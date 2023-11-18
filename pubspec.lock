@@ -695,7 +695,11 @@ packages:
       sha256: f4f88d4a900933e7267e2b353594774fc0d07fb072b47eedcd5b54e1ea3269f8
       url: "https://pub.dev"
     source: hosted
+<<<<<<< HEAD
     version: "2.1.7"
+=======
+    version: "2.1.6"
+>>>>>>> 6bacdd555c74231e7e9bcb3b90947b1e28c7ebda
   pointycastle:
     dependency: transitive
     description:
