@@ -114,7 +114,7 @@ class MainPageState extends State<MainPage> {
                             duration: const Duration(seconds: 1),
                             curve: Curves.fastLinearToSlowEaseIn,
                             width: index == _currentSelectedIndex
-                                ? displayWidth * .15
+                                ? displayWidth * .10
                                 : 0,
                           ),
                           AnimatedOpacity(

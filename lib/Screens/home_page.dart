@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -31,7 +32,7 @@ class _HomePageState extends State<HomePage> {
         percentage = 1.0; // Ensure the percentage doesn't exceed 100%
 
         if (percentage == 1.0) {
-          ArchivePopup(context);
+          archivePopup(context);
         }
       }
     });
@@ -124,13 +125,13 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               decoration: const BoxDecoration(
-                color: Colors.blue,
-                image: DecorationImage(
-                  fit: BoxFit.fill,
-                  image: AssetImage(
-                    'assets/images/waterlevel.jpg',
-                  ),
-                ),
+                color: Color.fromARGB(255, 79, 187, 238),
+                // image: DecorationImage(
+                //   fit: BoxFit.fill,
+                //   image: AssetImage(
+                //     'assets/images/waterlevel.jpg',
+                //   ),
+                // ),
               ),
             ),
             ListTile(
@@ -446,15 +447,15 @@ class _HomePageState extends State<HomePage> {
     return result;
   }
 
-  Future<void> ArchivePopup(BuildContext context) async {
-    await showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return const AlertDialog(
-          title: Text('Congratulations!'),
-          content: Text(' Harry has archive your goal today'),
-        );
-      },
-    );
-  }
+ Future<void> archivePopup(BuildContext context) async {
+  AwesomeDialog(
+    context: context,
+    dialogType: DialogType.SUCCES,
+    animType: AnimType.BOTTOMSLIDE,
+    title: 'Congratulations!',
+    desc: 'Harry has archived your goal today',
+    btnOkText: 'Okay',
+    btnOkOnPress: () {},
+  ).show();
+}
 }
