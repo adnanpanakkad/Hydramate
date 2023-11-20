@@ -16,15 +16,10 @@ class Profilepage extends StatefulWidget {
 }
 
 class _ProfilepageState extends State<Profilepage> {
-  late int selectedRadio;
-  @override
-  void initState() {
-    selectedRadio = 0;
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
+    getUserDatas();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -49,26 +44,26 @@ class _ProfilepageState extends State<Profilepage> {
                 ),
               ),
               const SizedBox(height: 50),
-               ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: ValueListenableBuilder(
-                      valueListenable: imgPath,
-                      builder: (BuildContext context, file, _) {
-                        return imgPath.value.isEmpty
-                            ? Image.asset(
-                                'assets/images/pokiman.png',
-                                width: 100,
-                                height: 100,
-                                fit: BoxFit.cover,
-                              )
-                            : Image.file(
-                                File(file),
-                                width: 100,
-                                height: 100,
-                                fit: BoxFit.cover,
-                              );
-                      },
-                    )),
+              ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: ValueListenableBuilder(
+                    valueListenable: imgPath,
+                    builder: (BuildContext context, file, _) {
+                      return imgPath.value.isEmpty
+                          ? Image.asset(
+                              'assets/images/pokiman.png',
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.cover,
+                            )
+                          : Image.file(
+                              File(file),
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.cover,
+                            );
+                    },
+                  )),
               const SizedBox(height: 50),
               const Padding(
                 padding: EdgeInsets.only(right: 230),

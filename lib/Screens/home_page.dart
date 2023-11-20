@@ -164,7 +164,7 @@ class _HomePageState extends State<HomePage> {
                 popup(context);
               },
             ),
-            const SizedBox(height: 240),
+            const SizedBox(height: 220),
             const Column(
               children: [
                 Text(
@@ -411,6 +411,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                   const SizedBox(height: 15),
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.lightBlueAccent.shade100,
+                      foregroundColor: Colors.white,
+                    ),
                     onPressed: () {
                       if (_heightController.text.isNotEmpty &&
                           _weightController.text.isNotEmpty) {
@@ -447,15 +451,15 @@ class _HomePageState extends State<HomePage> {
     return result;
   }
 
- Future<void> archivePopup(BuildContext context) async {
-  AwesomeDialog(
-    context: context,
-    dialogType: DialogType.SUCCES,
-    animType: AnimType.BOTTOMSLIDE,
-    title: 'Congratulations!',
-    desc: 'Harry has archived your goal today',
-    btnOkText: 'Okay',
-    btnOkOnPress: () {},
-  ).show();
-}
+  Future<void> archivePopup(BuildContext context) async {
+    AwesomeDialog(
+      context: context,
+      dialogType: DialogType.SUCCES,
+      animType: AnimType.BOTTOMSLIDE,
+      title: 'Congratulations!',
+      desc: 'Harry has archived your goal today',
+      btnOkText: 'Okay',
+      btnOkOnPress: () {},
+    ).show();
+  }
 }

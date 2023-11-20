@@ -189,9 +189,13 @@ class _UpdateprofileState extends State<Updateprofile> {
               ),
               const SizedBox(height: 50),
               ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.lightBlueAccent.shade100,
+                    foregroundColor: Colors.white,
+                  ),
                   onPressed: () async {
-                    updateUserDetails(
-                        _nameController, _passwordController, _ageController,_emailController);
+                    updateUserDetails(_nameController, _passwordController,
+                        _ageController, _emailController);
                   },
                   child: const Text('UPDATE')),
             ],

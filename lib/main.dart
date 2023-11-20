@@ -18,7 +18,7 @@ void main() async {
     Hive.registerAdapter(UserdataModalAdapter());
   }
   await getUserImg();
-
+  await getUserDatas();
   HiveDb db = HiveDb();
   Box userBox = await Hive.openBox(db.userBoxKey);
 

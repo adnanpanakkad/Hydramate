@@ -109,27 +109,5 @@ Future getPhoto() async {
   }
 }
 
-  //stepes
-  // setLastStep(lastStep) async {
-  //   final UserBodyDetailsBox = await Hive.openBox('userBodyDetailsBox');
-  //   UserBodyDetails? user = UserBodyDetailsBox.get('userbodydetails');
-
-  //   DateTime lastDate = user!.lastStepTakenDate;
-  //   DateTime todayDate = DateTime.now();
-
-  //   if (DateUtils.isSameDay(lastDate, todayDate)) {
-  //     print('setLastStep is same day, no functions running');
-  //     print('lastDate $lastDate');
-  //     print('today date $todayDate');
-  //   } else {
-  //     print('setLastStep is not same day, updating the date');
-  //     print('lastDate $lastDate');
-  //     print('today date $todayDate');
-  //     user.lastSteps = lastStep;
-  //     user.lastStepTakenDate = DateTime.now();
-  //     await UserBodyDetailsBox.put('userbodydetails', user);
-  //   }
-  //   print('settingLastStep func last step parameter passed:  $lastStep');
-  //   print('settingLastStep func users last step is:  ${user.lastSteps}');
-  //}
+  
 
