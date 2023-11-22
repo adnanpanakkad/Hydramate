@@ -5,8 +5,6 @@ import 'dart:async';
 
 import 'package:sensors/sensors.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:water_tracking_app/Screens/Analysis.dart';
-import 'package:water_tracking_app/Screens/all_pages.dart';
 
 class StepTracker extends StatefulWidget {
   @override

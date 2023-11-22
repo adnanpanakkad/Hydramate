@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:water_tracking_app/Screens/Achive_page.dart';
 import 'package:water_tracking_app/Screens/addwatergoal.dart';
 import 'package:water_tracking_app/Screens/all_pages.dart';
 import 'package:water_tracking_app/Screens/bmi_screen.dart';
@@ -53,11 +52,9 @@ class _HomePageState extends State<HomePage> {
     TimeOfDay time = TimeOfDay.now();
     String amPm = time.hour >= 12 ? 'PM' : 'AM'; // check if it's AM or PM
     ValueNotifier<String> formattedTime =
-        ValueNotifier('${time.hourOfPeriod} : ${time.minute} $amPm');
-
+    ValueNotifier('${time.hourOfPeriod} : ${time.minute} $amPm');
     Timer.periodic(const Duration(seconds: 1), (timer) {
       time = TimeOfDay.now();
-
       formattedTime.value = '${time.hourOfPeriod} : ${time.minute} $amPm';
     });
     // double screenWidth = MediaQuery.of(context).size.width;
@@ -66,7 +63,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.lightBlueAccent.shade100,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(50),
+            bottom: Radius.circular(30),
             // top: Radius.circular(40),
           ),
         ),
@@ -126,12 +123,6 @@ class _HomePageState extends State<HomePage> {
               ),
               decoration: const BoxDecoration(
                 color: Color.fromARGB(255, 79, 187, 238),
-                // image: DecorationImage(
-                //   fit: BoxFit.fill,
-                //   image: AssetImage(
-                //     'assets/images/waterlevel.jpg',
-                //   ),
-                // ),
               ),
             ),
             ListTile(
@@ -269,7 +260,8 @@ class _HomePageState extends State<HomePage> {
                 const Padding(
                   padding: EdgeInsets.only(right: 40),
                   child: Card(
-                    elevation: 5,
+                    elevation: 3,
+                    color: Colors.white,
                     child: Padding(
                       padding: EdgeInsets.all(15),
                       child: Row(
@@ -457,7 +449,7 @@ class _HomePageState extends State<HomePage> {
       dialogType: DialogType.SUCCES,
       animType: AnimType.BOTTOMSLIDE,
       title: 'Congratulations!',
-      desc: 'Harry has archived your goal today',
+      desc: 'Archived your goal today',
       btnOkText: 'Okay',
       btnOkOnPress: () {},
     ).show();

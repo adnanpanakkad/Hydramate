@@ -30,7 +30,6 @@ class MainPageState extends State<MainPage> {
     const Profilepage(),
   ];
 
-  
   @override
   void initState() {
     getUserDatas();
@@ -48,7 +47,7 @@ class MainPageState extends State<MainPage> {
         children: _pages,
       ),
       bottomNavigationBar: Container(
-        // padding: EdgeInsets.all(displayWidth * .02),
+        padding: EdgeInsets.only(left: 5),
         margin: EdgeInsets.all(displayWidth * .05),
         height: displayWidth * .160,
         decoration: BoxDecoration(
@@ -65,98 +64,107 @@ class MainPageState extends State<MainPage> {
         child: ListView.builder(
           itemCount: 3,
           scrollDirection: Axis.horizontal,
-          padding: EdgeInsets.symmetric(horizontal: displayWidth * .10),
-          itemBuilder: (context, index) => InkWell(
-            onTap: () {
-              setState(() {
-                _currentSelectedIndex = index;
-                HapticFeedback.lightImpact();
-              });
-            },
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            child: Stack(
-              children: [
-                AnimatedContainer(
-                  duration: const Duration(seconds: 1),
-                  curve: Curves.fastLinearToSlowEaseIn,
-                  width: index == _currentSelectedIndex
-                      ? displayWidth * .32
-                      : displayWidth * .18,
-                  alignment: Alignment.center,
-                  child: AnimatedContainer(
-                    duration: const Duration(seconds: 1),
-                    curve: Curves.fastLinearToSlowEaseIn,
-                    height:
-                        index == _currentSelectedIndex ? displayWidth * .12 : 0,
-                    width:
-                        index == _currentSelectedIndex ? displayWidth * .32 : 0,
-                    decoration: BoxDecoration(
-                      color: index == _currentSelectedIndex
-                          ? Colors.blueAccent.withOpacity(.2)
-                          : Colors.transparent,
-                      borderRadius: BorderRadius.circular(50),
+          padding: EdgeInsets.symmetric(horizontal: displayWidth * .0),
+          itemBuilder: (context, index) => Row(
+            mainAxisAlignment:
+                MainAxisAlignment.center, // Center items horizontally
+            children: [
+              SizedBox(width: 16),
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    _currentSelectedIndex = index;
+                    HapticFeedback.lightImpact();
+                  });
+                },
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                child: Stack(
+                  children: [
+                    AnimatedContainer(
+                      duration: const Duration(seconds: 1),
+                      curve: Curves.fastLinearToSlowEaseIn,
+                      width: index == _currentSelectedIndex
+                          ? displayWidth * .32
+                          : displayWidth * .20,
+                      alignment: Alignment.center,
+                      child: AnimatedContainer(
+                        duration: const Duration(seconds: 1),
+                        curve: Curves.fastLinearToSlowEaseIn,
+                        height: index == _currentSelectedIndex
+                            ? displayWidth * .12
+                            : 0,
+                        width: index == _currentSelectedIndex
+                            ? displayWidth * .32
+                            : 0,
+                        decoration: BoxDecoration(
+                          color: index == _currentSelectedIndex
+                              ? Colors.blueAccent.withOpacity(.2)
+                              : Colors.transparent,
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                AnimatedContainer(
-                  duration: const Duration(seconds: 1),
-                  curve: Curves.fastLinearToSlowEaseIn,
-                  width: index == _currentSelectedIndex
-                      ? displayWidth * .30
-                      : displayWidth * .18,
-                  alignment: Alignment.center,
-                  child: Stack(
-                    children: [
-                      Row(
+                    AnimatedContainer(
+                      duration: const Duration(seconds: 1),
+                      curve: Curves.fastLinearToSlowEaseIn,
+                      width: index == _currentSelectedIndex
+                          ? displayWidth * .30
+                          : displayWidth * .20,
+                      alignment: Alignment.center,
+                      child: Stack(
                         children: [
-                          AnimatedContainer(
-                            duration: const Duration(seconds: 1),
-                            curve: Curves.fastLinearToSlowEaseIn,
-                            width: index == _currentSelectedIndex
-                                ? displayWidth * .10
-                                : 0,
-                          ),
-                          AnimatedOpacity(
-                            opacity: index == _currentSelectedIndex ? 1 : 0,
-                            duration: const Duration(seconds: 1),
-                            curve: Curves.fastLinearToSlowEaseIn,
-                            child: Text(
-                              index == _currentSelectedIndex
-                                  ? '${listOfStrings[index]}'
-                                  : '',
-                              style: const TextStyle(
-                                color: Colors.blueAccent,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 15,
+                          Row(
+                            children: [
+                              AnimatedContainer(
+                                duration: const Duration(seconds: 1),
+                                curve: Curves.fastLinearToSlowEaseIn,
+                                width: index == _currentSelectedIndex
+                                    ? displayWidth * .10
+                                    : 0,
                               ),
-                            ),
+                              AnimatedOpacity(
+                                opacity: index == _currentSelectedIndex ? 1 : 0,
+                                duration: const Duration(seconds: 1),
+                                curve: Curves.fastLinearToSlowEaseIn,
+                                child: Text(
+                                  index == _currentSelectedIndex
+                                      ? '${listOfStrings[index]}'
+                                      : '',
+                                  style: const TextStyle(
+                                    color: Colors.blueAccent,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              AnimatedContainer(
+                                duration: const Duration(seconds: 1),
+                                curve: Curves.fastLinearToSlowEaseIn,
+                                width: index == _currentSelectedIndex
+                                    ? displayWidth * .03
+                                    : 20,
+                              ),
+                              Icon(
+                                listOfIcons[index],
+                                size: displayWidth * .076,
+                                color: index == _currentSelectedIndex
+                                    ? Colors.blueAccent
+                                    : Colors.black26,
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                      Row(
-                        children: [
-                          AnimatedContainer(
-                            duration: const Duration(seconds: 1),
-                            curve: Curves.fastLinearToSlowEaseIn,
-                            width: index == _currentSelectedIndex
-                                ? displayWidth * .03
-                                : 20,
-                          ),
-                          Icon(
-                            listOfIcons[index],
-                            size: displayWidth * .076,
-                            color: index == _currentSelectedIndex
-                                ? Colors.blueAccent
-                                : Colors.black26,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -176,21 +184,20 @@ class MainPageState extends State<MainPage> {
   ];
 }
 
-
 getUserDatas() async {
-    HiveDb db = HiveDb();
-    Box userBox = await Hive.openBox(db.userBoxKey);
+  HiveDb db = HiveDb();
+  Box userBox = await Hive.openBox(db.userBoxKey);
 
-    final sharedPrefs = await SharedPreferences.getInstance();
-    String email = sharedPrefs.getString(email_key_Name)!;
+  final sharedPrefs = await SharedPreferences.getInstance();
+  String email = sharedPrefs.getString(email_key_Name)!;
 
-    UserdataModal user = await userBox.get(email);
-    userName = user.name;
-    userAge = user.age;
-    userPass = user.password;
-    userEmail = user.email;
-    print('$userName');
-    print('$userAge');
-    print('$userPass');
-    print('$userEmail');
-  }
+  UserdataModal user = await userBox.get(email);
+  userName = user.name;
+  userAge = user.age;
+  userPass = user.password;
+  userEmail = user.email;
+  print('$userName');
+  print('$userAge');
+  print('$userPass');
+  print('$userEmail');
+}

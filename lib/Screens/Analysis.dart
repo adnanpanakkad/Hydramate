@@ -54,8 +54,7 @@ class _AnalysispageState extends State<Analysispage> {
                           image: AssetImage('assets/images/waterlevel.jpg'),
                           fit: BoxFit.fill,
                         ),
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(20)),
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
                       ),
                       child: Stack(
                         children: <Widget>[
@@ -115,8 +114,8 @@ class _AnalysispageState extends State<Analysispage> {
                           image: DecorationImage(
                             image: AssetImage('assets/images/stepcounter.jpg'),
                           ),
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(20)),
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          color: Colors.white,
                         ),
                         child: const Text(
                           "Walk",
@@ -144,8 +143,9 @@ class _AnalysispageState extends State<Analysispage> {
                       width: 160,
                       padding: const EdgeInsets.all(16.0),
                       decoration: const BoxDecoration(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(20)),
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        color: Colors.white,
+                        // Set the background color to white
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -186,6 +186,7 @@ class _AnalysispageState extends State<Analysispage> {
                       elevation: 3,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
+                        
                       ),
                       child: Container(
                         height: 250,
@@ -195,8 +196,8 @@ class _AnalysispageState extends State<Analysispage> {
                           image: DecorationImage(
                             image: AssetImage('assets/images/water-graph.jpg'),
                           ),
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(20)),
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          color:Colors.white,
                         ),
                         child: const Text(
                           "History",
