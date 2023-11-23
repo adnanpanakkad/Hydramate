@@ -6,9 +6,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:water_tracking_app/Screens/all_pages.dart';
 import 'package:water_tracking_app/main.dart';
 import 'package:water_tracking_app/model/data_model.dart';
+import 'package:water_tracking_app/model/stepcount_model.dart';
 
 class HiveDb {
   String userBoxKey = 'USERBOX';
+  String userstepBoxKey = 'userBodyDetailsBox';
+  late Box<Userstepdata> userstepdataBox;
 
   void addUser(UserdataModal value) async {
     Box userDb = await Hive.openBox<UserdataModal>(userBoxKey);
@@ -61,19 +64,6 @@ updateUserDetails(
   emailController.clear();
   Get.to(() => const MainPage());
 }
-// void updateUserDetails(
-//   TextEditingController nameController,
-//   TextEditingController passwordController,
-//   TextEditingController ageController,
-//   TextEditingController emailController, // Add emailController parameter
-// ) async {
-//   // Your existing code to update user details
-
-//   // Update the email in shared preferences
-//   SharedPreferences prefs = await SharedPreferences.getInstance();
-//   prefs.setString('userEmail', emailController.text);
-//    Get.to(() => const MainPage());
-// }
 
 loadValuesToCtrl(
     {required nameController,
@@ -108,6 +98,8 @@ Future getPhoto() async {
     print('not found');
   }
 }
+//STEP COUNT
+
 
   
 

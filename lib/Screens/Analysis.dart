@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:water_tracking_app/Screens/History_page.dart';
-import 'package:water_tracking_app/Screens/pedometer.dart';
+import 'package:water_tracking_app/Screens/step_tracker.dart';
 
 class Analysispage extends StatefulWidget {
   const Analysispage({Key? key}) : super(key: key);

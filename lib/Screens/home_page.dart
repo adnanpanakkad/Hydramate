@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
     TimeOfDay time = TimeOfDay.now();
     String amPm = time.hour >= 12 ? 'PM' : 'AM'; // check if it's AM or PM
     ValueNotifier<String> formattedTime =
-    ValueNotifier('${time.hourOfPeriod} : ${time.minute} $amPm');
+        ValueNotifier('${time.hourOfPeriod} : ${time.minute} $amPm');
     Timer.periodic(const Duration(seconds: 1), (timer) {
       time = TimeOfDay.now();
       formattedTime.value = '${time.hourOfPeriod} : ${time.minute} $amPm';
@@ -359,12 +359,20 @@ class _HomePageState extends State<HomePage> {
           title: const Text('ARE YOU SURE?'),
           actions: [
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.lightBlueAccent.shade100,
+                foregroundColor: Colors.white,
+              ),
               onPressed: () {
                 signout(context);
               },
               child: const Text('YES'),
             ),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.lightBlueAccent.shade100,
+                foregroundColor: Colors.white,
+              ),
               onPressed: () => Navigator.pop(context),
               child: const Text('NO'),
             ),

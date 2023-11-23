@@ -35,72 +35,74 @@ class BMIDetailsScreen extends StatelessWidget {
         title: const Text('BMI Details'),
         centerTitle: true,
       ),
-      body: Container(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Center(
-              child: SizedBox(
-                height: 300,
-                width: 300,
-                child: KdGaugeView(
-                  minSpeed: 0,
-                  maxSpeed: 40,
-                  speed: bmiValue,
-                  speedTextStyle: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 60,
-                      fontWeight: FontWeight.bold),
-                  animate: true,
-                  duration: const Duration(seconds: 2),
-                  alertSpeedArray: const [0, 18.4, 24.9, 29.9],
-                  alertColorArray: const [
-                    Colors.orange,
-                    Colors.green,
-                    Colors.orange,
-                    Colors.red
-                  ],
-                  unitOfMeasurement: 'BMI',
-                  unitOfMeasurementTextStyle: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 30,
-                      fontWeight: FontWeight.w700),
-                  gaugeWidth: 15,
-                  fractionDigits: 1,
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Center(
+                child: SizedBox(
+                  height: 300,
+                  width: 300,
+                  child: KdGaugeView(
+                    minSpeed: 0,
+                    maxSpeed: 40,
+                    speed: bmiValue,
+                    speedTextStyle: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 60,
+                        fontWeight: FontWeight.bold),
+                    animate: true,
+                    duration: const Duration(seconds: 2),
+                    alertSpeedArray: const [0, 18.4, 24.9, 29.9],
+                    alertColorArray: const [
+                      Colors.orange,
+                      Colors.green,
+                      Colors.orange,
+                      Colors.red
+                    ],
+                    unitOfMeasurement: 'BMI',
+                    unitOfMeasurementTextStyle: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 30,
+                        fontWeight: FontWeight.w700),
+                    gaugeWidth: 15,
+                    fractionDigits: 1,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 8.0),
-            Text(
-              getBMIStatus(),
-              style:
-                  const TextStyle(fontSize: 36.0, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 24.0),
-            const Text(
-              'BMI Value',
-              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8.0),
-            Text(
-              bmiValue.toStringAsFixed(1),
-              style:
-                  const TextStyle(fontSize: 36.0, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 44.0),
-            const Text(
-              'Health Details',
-              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 18.0),
-            Text(
-              getBMIInterpretation(),
-              style: const TextStyle(fontSize: 18.0),
-              textAlign: TextAlign.center,
-            ),
-          ],
+              const SizedBox(height: 8.0),
+              Text(
+                getBMIStatus(),
+                style:
+                    const TextStyle(fontSize: 36.0, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 24.0),
+              const Text(
+                'BMI Value',
+                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8.0),
+              Text(
+                bmiValue.toStringAsFixed(1),
+                style:
+                    const TextStyle(fontSize: 36.0, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 44.0),
+              const Text(
+                'Health Details',
+                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 18.0),
+              Text(
+                getBMIInterpretation(),
+                style: const TextStyle(fontSize: 18.0),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
         ),
       ),
     );

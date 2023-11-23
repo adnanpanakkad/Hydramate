@@ -7,6 +7,8 @@ import 'package:sensors/sensors.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class StepTracker extends StatefulWidget {
+  const StepTracker({super.key});
+
   @override
   _StepTrackerState createState() => _StepTrackerState();
 }
@@ -67,7 +69,7 @@ class _StepTrackerState extends State<StepTracker> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         automaticallyImplyLeading: false,
-        title: Text(
+        title: const Text(
           'Step Tracker',
           style: TextStyle(color: Colors.black),
         ),
@@ -75,29 +77,29 @@ class _StepTrackerState extends State<StepTracker> {
       body: Center(
         child: Column(
           children: [
-            SizedBox(height: 130),
+            const SizedBox(height: 130),
             SizedBox(
               width: 300,
               height: 300,
               child:
                   Lottie.asset('assets/Lottie/Animation - 1695630496886.json'),
             ),
-            SizedBox(height: 50),
-            Text(
+            const SizedBox(height: 50),
+            const Text(
               'Step Taken today',
               style: TextStyle(fontSize: 20),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Text(
               '$stepCount',
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 150),
+            const SizedBox(height: 150),
             IconButton(
                 onPressed: () {
                   Get.back();
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.close,
                   size: 50,
                 )),
