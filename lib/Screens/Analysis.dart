@@ -36,7 +36,7 @@ class _AnalysispageState extends State<Analysispage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 40),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -112,7 +112,8 @@ class _AnalysispageState extends State<Analysispage> {
                         padding: const EdgeInsets.all(16.0),
                         decoration: const BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('assets/images/stepcounter.jpg'),
+                            image: AssetImage(
+                                'assets/images/Human walk cycle.gif'),
                           ),
                           borderRadius: BorderRadius.all(Radius.circular(20)),
                           color: Colors.white,
@@ -186,7 +187,6 @@ class _AnalysispageState extends State<Analysispage> {
                       elevation: 3,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
-                        
                       ),
                       child: Container(
                         height: 250,
@@ -194,10 +194,11 @@ class _AnalysispageState extends State<Analysispage> {
                         padding: const EdgeInsets.all(16.0),
                         decoration: const BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('assets/images/water-graph.jpg'),
+                            image:
+                                AssetImage('assets/images/data-analysis.gif'),
                           ),
                           borderRadius: BorderRadius.all(Radius.circular(20)),
-                          color:Colors.white,
+                          color: Colors.white,
                         ),
                         child: const Text(
                           "History",

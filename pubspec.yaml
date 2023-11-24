@@ -47,6 +47,7 @@ dependencies:
   syncfusion_flutter_charts: ^23.1.44
   syncfusion_flutter_gauges: ^23.1.43
   awesome_dialog: ^3.1.0
+  google_fonts: ^6.1.0
 
 dev_dependencies:
   build_runner: ^2.4.6
@@ -81,9 +82,10 @@ flutter:
     - assets\images\stepcounter.jpg
     - assets\images\waterlevel.jpg
     - assets\images\waterlevelgraph.jpg
-    - assets\images\home waterdrop.jpg
     - assets\images\23.jpg
     - assets\images\eb8a48bad52ef6cb78500277d8b9b4ff.gif
+    - assets\images\data-analysis.gif
+    - assets\images\Human walk cycle.gif
     - assets\Lottie\Animation - 1695630496886.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

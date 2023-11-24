@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:water_tracking_app/Screens/addwatergoal.dart';
@@ -75,10 +76,12 @@ class _HomePageState extends State<HomePage> {
             icon: const Icon(Icons.medical_information),
           ),
         ],
-        title: const Center(
+        title: Center(
           child: Text(
             'STAY HYDRATED',
-            style: TextStyle(color: Colors.white),
+            style: GoogleFonts.yellowtail(
+              textStyle: TextStyle(color: Colors.white, letterSpacing: 0.5),
+            ),
           ),
         ),
       ),
