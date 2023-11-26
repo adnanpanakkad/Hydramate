@@ -21,13 +21,14 @@ class UserstepdataAdapter extends TypeAdapter<Userstepdata> {
       totalSteps: fields[2] as int,
       caloriesBurnedToday: fields[3] as int,
       totalCaloriesBurned: fields[4] as int,
+      dateIsToday: fields[5] as DateTime,
     );
   }
 
   @override
   void write(BinaryWriter writer, Userstepdata obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(1)
       ..write(obj.dailySteps)
       ..writeByte(2)
@@ -35,7 +36,9 @@ class UserstepdataAdapter extends TypeAdapter<Userstepdata> {
       ..writeByte(3)
       ..write(obj.caloriesBurnedToday)
       ..writeByte(4)
-      ..write(obj.totalCaloriesBurned);
+      ..write(obj.totalCaloriesBurned)
+      ..writeByte(5)
+      ..write(obj.dateIsToday);
   }
 
   @override

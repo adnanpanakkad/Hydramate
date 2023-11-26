@@ -15,6 +15,9 @@ class StepTracker extends StatefulWidget {
 
 class _StepTrackerState extends State<StepTracker> {
   int stepCount = 0;
+  int stepCurrent = 0;
+  int totalSteps = 0;
+  int caloriesBurnedToday = 0;
   late StreamSubscription<AccelerometerEvent> _subscription;
 
   @override
@@ -55,6 +58,7 @@ class _StepTrackerState extends State<StepTracker> {
 
   @override
   void dispose() {
+    caloriesBurnedToday = 0;
     _subscription.cancel();
     super.dispose();
   }
@@ -89,12 +93,17 @@ class _StepTrackerState extends State<StepTracker> {
               'Step Taken today',
               style: TextStyle(fontSize: 20),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 10),
             Text(
               '$stepCount',
-              style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 150),
+            const Text('Calories burned'),
+            Text(
+              '$caloriesBurnedToday',
+              style: const TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 90),
             IconButton(
                 onPressed: () {
                   Get.back();

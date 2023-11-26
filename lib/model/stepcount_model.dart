@@ -11,11 +11,12 @@ class Userstepdata {
   int caloriesBurnedToday;
   @HiveField(4)
   int totalCaloriesBurned;
-
-  Userstepdata({
-    required this.dailySteps,
-    required this.totalSteps,
-    required this.caloriesBurnedToday,
-    required this.totalCaloriesBurned,
-  });
+  @HiveField(5)
+  DateTime dateIsToday;
+  Userstepdata(
+      {required this.dailySteps,
+      required this.totalSteps,
+      required this.caloriesBurnedToday,
+      required this.totalCaloriesBurned,
+      required this.dateIsToday});
 }
