@@ -99,7 +99,7 @@ class MainPageState extends State<MainPage> {
                             : 0,
                         decoration: BoxDecoration(
                           color: index == _currentSelectedIndex
-                              ? Colors.blueAccent.withOpacity(.2)
+                              ? Colors.lightBlueAccent.withOpacity(.2)
                               : Colors.transparent,
                           borderRadius: BorderRadius.circular(50),
                         ),
@@ -132,7 +132,7 @@ class MainPageState extends State<MainPage> {
                                       ? '${listOfStrings[index]}'
                                       : '',
                                   style: const TextStyle(
-                                    color: Colors.blueAccent,
+                                    color: Colors.lightBlueAccent,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 15,
                                   ),
@@ -153,7 +153,7 @@ class MainPageState extends State<MainPage> {
                                 listOfIcons[index],
                                 size: displayWidth * .076,
                                 color: index == _currentSelectedIndex
-                                    ? Colors.blueAccent
+                                    ? Colors.lightBlueAccent
                                     : Colors.black26,
                               ),
                             ],
