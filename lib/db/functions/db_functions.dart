@@ -97,8 +97,8 @@ Future getPhoto() async {
   } else {
     print('not found');
   }
+
 }
-//STEP COUNT
 
 
   

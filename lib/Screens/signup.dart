@@ -172,7 +172,7 @@ class _SingnupState extends State<Singnup> {
       } else {
         UserdataModal model = UserdataModal(
             name: username, age: age, email: email, password: password);
-       await userBox.put(email, model);
+        await userBox.put(email, model);
 
         final sharedPrefs = await SharedPreferences.getInstance();
         await sharedPrefs.setString(email_key_Name, model.email);

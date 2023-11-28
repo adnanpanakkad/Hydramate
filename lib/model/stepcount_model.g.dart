@@ -17,10 +17,10 @@ class UserstepdataAdapter extends TypeAdapter<Userstepdata> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Userstepdata(
-      dailySteps: fields[1] as int,
-      totalSteps: fields[2] as int,
-      caloriesBurnedToday: fields[3] as int,
-      totalCaloriesBurned: fields[4] as int,
+      dailySteps: fields[1] as String,
+      totalSteps: fields[2] as String,
+      caloriesBurnedToday: fields[3] as String,
+      totalCaloriesBurned: fields[4] as String,
       dateIsToday: fields[5] as DateTime,
     );
   }

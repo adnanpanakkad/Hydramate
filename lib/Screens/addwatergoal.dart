@@ -47,14 +47,14 @@ class _AddgoalState extends State<Addgoal> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 130, top: 150),
+            padding: const EdgeInsets.only(left: 130, top: 130),
             child: Container(
-                height: 80,
+                height: 90,
                 width: 120,
                 color: Colors.lightBlueAccent.shade100,
                 child: Center(
                     child: Text(
-                  selectedItemInContainer ?? '',
+                  selecteditem!,
                   style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 70,

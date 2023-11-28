@@ -41,7 +41,6 @@ class _StepTrackerState extends State<StepTracker> {
       }
     }
   }
-
   // Subscribe to accelerometer events
   void _subscribeToAccelerometer() {
     _subscription = accelerometerEvents.listen((AccelerometerEvent event) {
@@ -67,7 +66,6 @@ class _StepTrackerState extends State<StepTracker> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true, // Ensure the body is behind the app bar
-
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.transparent,
