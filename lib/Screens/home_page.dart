@@ -21,9 +21,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final ValueNotifier<String?> _selectedItemNotifier =
+      ValueNotifier<String?>('1');
   final TextEditingController _heightController = TextEditingController();
   final TextEditingController _weightController = TextEditingController();
   double percentage = 0;
+
+  String? get selecteditem => _selectedItemNotifier.value;
 
   void incrementPercentage() {
     setState(() {
@@ -233,7 +237,11 @@ class _HomePageState extends State<HomePage> {
                                 borderRadius: BorderRadius.circular(30)),
                             backgroundColor: Colors.white,
                           ),
-                          onPressed: () => Get.to(const Addgoal()),
+                          onPressed: () {
+                            // Navigate to Addgoal page and pass the ValueNotifier
+                            Get.to(Addgoal(
+                                selectedItemNotifier: _selectedItemNotifier));
+                          },
                           child: const Text(
                             'add your goal',
                             style: TextStyle(color: Colors.black),
@@ -260,39 +268,43 @@ class _HomePageState extends State<HomePage> {
                     progressColor: Colors.lightBlueAccent.shade100,
                   ),
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.only(right: 40),
-                  child: Card(
-                    elevation: 3,
-                    color: Colors.white,
-                    child: Padding(
-                      padding: EdgeInsets.all(15),
-                      child: Row(
-                        children: [
-                          Center(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Target',
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
+                  child: Container(
+                    height: 120, // set the desired height
+                    width: 120, // set the desired width
+                    child: Card(
+                      elevation: 3,
+                      color: Colors.white,
+                      child: Padding(
+                        padding: EdgeInsets.all(15),
+                        child: Row(
+                          children: [
+                            Center(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    'Target',
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(height: 30),
-                                Text(
-                                  '2000ml',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
+                                  SizedBox(height: 30),
+                                  Text(
+                                    '${(int.parse(selecteditem!) * 200)}ml',
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),

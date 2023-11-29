@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Addgoal extends StatefulWidget {
-  const Addgoal({Key? key}) : super(key: key);
+  const Addgoal({Key? key, required this.selectedItemNotifier})
+      : super(key: key);
+
+  final ValueNotifier<String?> selectedItemNotifier;
 
   @override
   _AddgoalState createState() => _AddgoalState();
@@ -15,6 +18,7 @@ class _AddgoalState extends State<Addgoal> {
   void initState() {
     super.initState();
     selecteditem = '1'; // Initialize selecteditem inside initState
+    widget.selectedItemNotifier.value = selecteditem; // Initialize the notifier
   }
 
   @override
@@ -95,6 +99,8 @@ class _AddgoalState extends State<Addgoal> {
                             onChanged: (item) {
                               setState(() {
                                 selecteditem = item!;
+                                widget.selectedItemNotifier.value =
+                                    item; // Notify the change
                               });
                             },
                           ),
