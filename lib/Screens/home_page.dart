@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:water_tracking_app/Screens/addwatergoal.dart';
+import 'package:water_tracking_app/Screens/goalpage/addwatergoal.dart';
 import 'package:water_tracking_app/Screens/all_pages.dart';
 import 'package:water_tracking_app/Screens/bmi_screen.dart';
 import 'package:water_tracking_app/Screens/login.dart';
