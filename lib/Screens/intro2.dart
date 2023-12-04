@@ -24,7 +24,7 @@ class Intro2 extends StatelessWidget {
                     Icons.arrow_back,
                     color: Colors.blue,
                   )),
-            ],
+            ],  
           ),
           const SizedBox(height: 100),
           Center(child: Image.asset('assets/images/World water day-bro 1.jpg')),
@@ -51,8 +51,6 @@ class Intro2 extends StatelessWidget {
                     backgroundColor: Colors.lightBlueAccent.shade100),
                 child: const Text('NEXT'),
                 onPressed: () {
-                  // Navigator.of(context)
-                  //     .push(MaterialPageRoute(builder: (ctx) => const Intro3()));
                   Get.to(() => Intro3());
                 }),
           ),
