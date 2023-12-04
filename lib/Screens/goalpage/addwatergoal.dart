@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:water_tracking_app/Screens/goalpage/widgets/goalitemcontainer.dart';
 
 class Addgoal extends StatefulWidget {
   const Addgoal({Key? key, required this.selectedItemNotifier})
@@ -121,16 +122,16 @@ class _AddgoalState extends State<Addgoal> {
                     color: Colors.white.withOpacity(1),
                     borderRadius: BorderRadius.circular(30.0),
                   ),
-                  child: Column(
+                  child: const Column(
                     children: [
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.only(top: 20),
                         child: Text('Water Goal',
                             style: TextStyle(
                                 fontSize: 30, fontWeight: FontWeight.bold)),
                       ),
-                      const SizedBox(height: 10),
-                      const Row(
+                      SizedBox(height: 10),
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
@@ -139,144 +140,39 @@ class _AddgoalState extends State<Addgoal> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 50),
+                      SizedBox(height: 50),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Container(
-                            height: 100,
-                            width: 150,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: Colors.grey),
-                            ),
-                            child: const Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(
-                                  'Summer time',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Text(
-                                      '10 Glass',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20),
-                                    ),
-                                    Icon(Icons.forest, color: Colors.green),
-                                  ],
-                                )
-                              ],
-                            ),
+                          GoalItemContainer(
+                            title: 'Summer time',
+                            quantity: '10 Glass',
+                            icon: Icons.forest,
+                            iconColor: Colors.green,
                           ),
-                          Container(
-                            height: 100,
-                            width: 150,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: Colors.grey),
-                            ),
-                            child: const Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(
-                                  'Sporty',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Text(
-                                      '7 Glass',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20),
-                                    ),
-                                    Icon(
-                                      Icons.sports_football,
-                                      color: Colors.orange,
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
+                          GoalItemContainer(
+                            title: 'Sporty',
+                            quantity: '7 Glass',
+                            icon: Icons.sports_football,
+                            iconColor: Colors.orange,
                           ),
                         ],
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: 30),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Container(
-                            height: 100,
-                            width: 150,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: Colors.grey),
-                            ),
-                            child: const Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(
-                                  'Snow day',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Text(
-                                      '5 Glass',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20),
-                                    ),
-                                    Icon(
-                                      Icons.ac_unit,
-                                      color: Colors.blue,
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
+                          GoalItemContainer(
+                            title: 'Snow day',
+                            quantity: '5 Glass',
+                            icon: Icons.ac_unit,
+                            iconColor: Colors.blue,
                           ),
-                          Container(
-                            height: 100,
-                            width: 150,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: Colors.grey),
-                            ),
-                            child: const Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(
-                                  'Child',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Text(
-                                      '4 Glass',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20),
-                                    ),
-                                    Icon(
-                                      Icons.child_care,
-                                      color: Colors.pink,
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
+                          GoalItemContainer(
+                            title: 'Child',
+                            quantity: '4 Glass',
+                            icon: Icons.child_care,
+                            iconColor: Colors.pink,
                           ),
                         ],
                       ),

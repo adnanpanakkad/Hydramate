@@ -18,7 +18,7 @@ void main() async {
     Hive.registerAdapter(UserdataModalAdapter());
   }
   await getUserImg();
-  await getUserDatas();
+  // await getUserDatas();
   HiveDb db = HiveDb();
   Box userBox = await Hive.openBox(db.userBoxKey);
 
@@ -30,7 +30,7 @@ void main() async {
   // user_age = user.age;
   // user_email = user.email;
   runApp(const MyApp());
-// getUserDatas();
+  getUserDatas();
 }
 
 class MyApp extends StatelessWidget {

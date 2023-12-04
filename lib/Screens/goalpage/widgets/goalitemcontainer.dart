@@ -46,31 +46,4 @@ class GoalItemContainer extends StatelessWidget {
 }
 
 
-class GlassContainer extends StatelessWidget {
-  final String selecteditem;
-  final ValueChanged<String> onSelectionChanged;
 
-  GlassContainer({required this.selecteditem, required this.onSelectionChanged});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 130, top: 130),
-      child: Container(
-        height: 90,
-        width: 120,
-        color: Colors.lightBlueAccent.shade100,
-        child: Center(
-          child: Text(
-            selecteditem,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 70,
-              color: Colors.white,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
