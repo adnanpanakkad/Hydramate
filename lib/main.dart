@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:water_tracking_app/Screens/all_pages.dart';
 import 'package:water_tracking_app/Screens/splashscreen.dart';
 import 'package:water_tracking_app/db/functions/db_functions.dart';
 import 'package:water_tracking_app/model/data_model.dart';
@@ -30,7 +29,7 @@ void main() async {
   // user_age = user.age;
   // user_email = user.email;
   runApp(const MyApp());
-  getUserDatas();
+ // getUserDatas();
 }
 
 class MyApp extends StatelessWidget {

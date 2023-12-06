@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:water_tracking_app/Screens/intro2.dart';
-import 'package:water_tracking_app/Screens/login.dart';
+import 'package:water_tracking_app/Screens/loginpage/login.dart';
 
 
 class Intro3 extends StatelessWidget {
@@ -52,8 +52,6 @@ class Intro3 extends StatelessWidget {
                       backgroundColor: Colors.lightBlueAccent.shade100),
                   child: const Text('GET STARTED'),
                   onPressed: () {
-                    // Navigator.of(context)
-                    //     .push(MaterialPageRoute(builder: (ctx) => const Login()));
                     Get.to(() => Login());
                   })),
         ],

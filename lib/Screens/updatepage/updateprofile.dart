@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:water_tracking_app/Screens/updatepage/widgets/updatefield.dart';
 import 'package:water_tracking_app/db/functions/db_functions.dart';
 import 'package:water_tracking_app/main.dart';
 
@@ -97,25 +98,11 @@ class _UpdateprofileState extends State<Updateprofile> {
                 ),
               ),
               const SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.only(right: 20, left: 20),
-                child: TextFormField(
+              UpdateTextfield(
                   controller: _nameController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter Your name',
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Username is empty';
-                    } else {
-                      return null;
-                    }
-                  },
-                ),
-              ),
-              const SizedBox(height: 30),
-              const SizedBox(height: 30),
+                  hintText: 'Enter Your name',
+                  warning: 'name is empty'),
+              const SizedBox(height: 40),
               const Padding(
                 padding: EdgeInsets.only(left: 25),
                 child: Row(
@@ -129,23 +116,10 @@ class _UpdateprofileState extends State<Updateprofile> {
                 ),
               ),
               const SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.only(right: 20, left: 20),
-                child: TextFormField(
+              UpdateTextfield(
                   controller: _passwordController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter Your password',
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Username is empty';
-                    } else {
-                      return null;
-                    }
-                  },
-                ),
-              ),
+                  hintText: 'Enter Your new password',
+                  warning: 'password is empty'),
               const SizedBox(height: 50),
               const Padding(
                 padding: EdgeInsets.only(left: 25),
@@ -160,23 +134,10 @@ class _UpdateprofileState extends State<Updateprofile> {
                 ),
               ),
               const SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.only(right: 20, left: 20),
-                child: TextFormField(
+              UpdateTextfield(
                   controller: _ageController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter Your age',
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Username is empty';
-                    } else {
-                      return null;
-                    }
-                  },
-                ),
-              ),
+                  hintText: 'Enter Your age',
+                  warning: 'age is empty'),
               const Padding(
                 padding: EdgeInsets.only(left: 25),
               ),

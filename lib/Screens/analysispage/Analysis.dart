@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:water_tracking_app/Screens/History_page.dart';
+import 'package:water_tracking_app/Screens/analysispage/widgets/analysiscontainer.dart';
 import 'package:water_tracking_app/Screens/step_tracker.dart';
 
 class Analysispage extends StatefulWidget {
@@ -40,59 +41,7 @@ class _AnalysispageState extends State<Analysispage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Card(
-                    elevation: 3,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    child: Container(
-                      height: 250,
-                      width: 160,
-                      padding: const EdgeInsets.all(16.0),
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/images/waterlevel.jpg'),
-                          fit: BoxFit.fill,
-                        ),
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                      ),
-                      child: Stack(
-                        children: <Widget>[
-                          Positioned(
-                            top: 0,
-                            left: 0,
-                            child: Image.asset(
-                              'assets/images/waterlevelgraph.jpg',
-                              height: 120, // Adjust the height as needed
-                              width: 120, // Adjust the width as needed
-                            ),
-                          ),
-                          const Positioned(
-                            top: 0,
-                            left: 10,
-                            child: Text(
-                              "Water",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                          const Positioned(
-                            top: 180,
-                            left: 30,
-                            child: Text(
-                              '2.1ltr',
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
+                  const AnalysisPageCardes(),
                   GestureDetector(
                     onTap: () {
                       Navigator.of(context).push(
@@ -101,32 +50,9 @@ class _AnalysispageState extends State<Analysispage> {
                         ),
                       );
                     },
-                    child: Card(
-                      elevation: 3,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: Container(
-                        height: 250,
-                        width: 160,
-                        padding: const EdgeInsets.all(16.0),
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(
-                                'assets/images/Human walk cycle.gif'),
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          color: Colors.white,
-                        ),
-                        child: const Text(
-                          "Walk",
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: const Analysiscard(
+                        title: 'Walk',
+                        image: 'assets/images/Human walk cycle.gif'),
                   ),
                 ],
               ),
@@ -180,36 +106,12 @@ class _AnalysispageState extends State<Analysispage> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {
-                      Get.to(() => const NumericDefault());
-                    },
-                    child: Card(
-                      elevation: 3,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: Container(
-                        height: 250,
-                        width: 160,
-                        padding: const EdgeInsets.all(16.0),
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image:
-                                AssetImage('assets/images/data-analysis.gif'),
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          color: Colors.white,
-                        ),
-                        child: const Text(
-                          "History",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                      onTap: () {
+                        Get.to(() => const NumericDefault());
+                      },
+                      child: const Analysiscard(
+                          title: 'History',
+                          image: 'assets/images/data-analysis.gif')),
                 ],
               ),
             ],

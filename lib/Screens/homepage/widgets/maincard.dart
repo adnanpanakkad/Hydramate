@@ -4,9 +4,9 @@ import 'package:water_tracking_app/Screens/goalpage/addwatergoal.dart';
 
 class MainCard extends StatelessWidget {
   final ValueListenable<String> formattedTime;
-  final ValueNotifier<String> selectedItemNotifier;
+  final ValueNotifier<String?> selectedItemNotifier;
 
-  MainCard({
+  const  MainCard({super.key, 
     required this.formattedTime,
     required this.selectedItemNotifier,
   });

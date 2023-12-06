@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:water_tracking_app/Screens/all_pages.dart';
-import 'package:water_tracking_app/Screens/updateprofile.dart';
+import 'package:water_tracking_app/Screens/updatepage/updateprofile.dart';
 import 'package:water_tracking_app/main.dart';
 
 class Profilepage extends StatefulWidget {
@@ -39,7 +39,7 @@ class _ProfilepageState extends State<Profilepage> {
                     ),
                     IconButton(
                         onPressed: () => Get.to(() => const Updateprofile()),
-                        icon: const Icon(Icons.edit)),
+                        icon: const Icon(Icons.edit,color: Colors.blue,)),
                   ],
                 ),
               ),

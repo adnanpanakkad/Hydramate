@@ -1,13 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:water_tracking_app/Screens/goalpage/addwatergoal.dart';
 import 'package:water_tracking_app/Screens/all_pages.dart';
 import 'package:water_tracking_app/Screens/homepage/functions/bmifunctions.dart';
 import 'package:water_tracking_app/Screens/homepage/widgets/appdrawer.dart';
 import 'package:water_tracking_app/Screens/homepage/widgets/glassaddbutton.dart';
+import 'package:water_tracking_app/Screens/homepage/widgets/maincard.dart';
 import 'package:water_tracking_app/db/functions/db_functions.dart';
 import 'package:water_tracking_app/main.dart';
 
@@ -19,8 +18,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final ValueNotifier<String?> _selectedItemNotifier =
-      ValueNotifier<String?>('1');
+  final ValueNotifier<String?> _selectedItemNotifier = ValueNotifier<String?>('1');
 
   double percentage = 0;
 
@@ -31,13 +29,12 @@ class _HomePageState extends State<HomePage> {
       percentage += 0.1;
       if (percentage >= 1.0) {
         percentage = 1.0;
-       if (percentage == 1.0) {
+        if (percentage == 1.0) {
           archivePopup(context);
         }
       }
     });
   }
-
   decrementPercentage() {
     setState(() {
       percentage -= 0.1;
@@ -46,10 +43,10 @@ class _HomePageState extends State<HomePage> {
       }
     });
   }
-
   @override
   Widget build(BuildContext context) {
     getUserImg();
+    getUserDatas();
     TimeOfDay time = TimeOfDay.now();
     String amPm = time.hour >= 12 ? 'PM' : 'AM'; // check if it's AM or PM
     ValueNotifier<String> formattedTime =
@@ -58,14 +55,12 @@ class _HomePageState extends State<HomePage> {
       time = TimeOfDay.now();
       formattedTime.value = '${time.hourOfPeriod} : ${time.minute} $amPm';
     });
-    // double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightBlueAccent.shade100,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(30),
-            // top: Radius.circular(40),
           ),
         ),
         actions: [
@@ -94,78 +89,10 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.only(left: 20, right: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [],
-              ),
-            ),
             const SizedBox(height: 40),
-            Card(
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: Container(
-                height: 200,
-                width: 320,
-                padding: const EdgeInsets.all(16.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  image: const DecorationImage(
-                    image: AssetImage(
-                        'assets/images/eb8a48bad52ef6cb78500277d8b9b4ff.gif'),
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                child: Stack(
-                  children: <Widget>[
-                    Positioned(
-                      top: 10,
-                      left: 10,
-                      child: ValueListenableBuilder(
-                          valueListenable: formattedTime,
-                          builder:
-                              (BuildContext context, String value, Widget) {
-                            return Text(
-                              value,
-                              style: const TextStyle(
-                                  fontSize: 24, fontWeight: FontWeight.bold),
-                            );
-                          }),
-                    ),
-                    const Positioned(
-                      top: 45,
-                      left: 10,
-                      child: Text(
-                        '200ml water(1 Glass)',
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 10,
-                      left: 10,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30)),
-                            backgroundColor: Colors.white,
-                          ),
-                          onPressed: () {
-                            // Navigate to Addgoal page and pass the ValueNotifier
-                            Get.to(Addgoal(
-                                selectedItemNotifier: _selectedItemNotifier));
-                          },
-                          child: const Text(
-                            'add your goal',
-                            style: TextStyle(color: Colors.black),
-                          )),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            MainCard(
+                formattedTime: formattedTime,
+                selectedItemNotifier: _selectedItemNotifier),
             const SizedBox(height: 50),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
