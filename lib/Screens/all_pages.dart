@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:water_tracking_app/Screens/analysispage/Analysis.dart';
-import 'package:water_tracking_app/Screens/Profile.dart';
+import 'package:water_tracking_app/Screens/profile/Profile.dart';
 import 'package:water_tracking_app/Screens/homepage/home_page.dart';
 import 'package:water_tracking_app/db/functions/db_functions.dart';
 import 'package:water_tracking_app/main.dart';

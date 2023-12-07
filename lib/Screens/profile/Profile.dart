@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:water_tracking_app/Screens/all_pages.dart';
+import 'package:water_tracking_app/Screens/profile/widgets/profilefield.dart';
 import 'package:water_tracking_app/Screens/updatepage/updateprofile.dart';
 import 'package:water_tracking_app/main.dart';
 
@@ -16,7 +17,6 @@ class Profilepage extends StatefulWidget {
 }
 
 class _ProfilepageState extends State<Profilepage> {
-
   @override
   Widget build(BuildContext context) {
     getUserDatas();
@@ -39,7 +39,10 @@ class _ProfilepageState extends State<Profilepage> {
                     ),
                     IconButton(
                         onPressed: () => Get.to(() => const Updateprofile()),
-                        icon: const Icon(Icons.edit,color: Colors.blue,)),
+                        icon: const Icon(
+                          Icons.edit,
+                          color: Colors.blue,
+                        )),
                   ],
                 ),
               ),
@@ -78,19 +81,7 @@ class _ProfilepageState extends State<Profilepage> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      height: 50,
-                      width: 320,
-                      decoration: BoxDecoration(
-                          color: Colors.blue.shade50,
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Center(
-                        child: Text(
-                          userName,
-                          style: const TextStyle(fontWeight: FontWeight.w800),
-                        ),
-                      ),
-                    ),
+                    Profilefield(text: userName),
                   ],
                 ),
               ),
@@ -108,19 +99,7 @@ class _ProfilepageState extends State<Profilepage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Container(
-                      height: 50,
-                      width: 320,
-                      decoration: BoxDecoration(
-                          color: Colors.blue.shade50,
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Center(
-                        child: Text(
-                          userEmail,
-                          style: const TextStyle(fontWeight: FontWeight.w800),
-                        ),
-                      ),
-                    ),
+                    Profilefield(text: userEmail),
                   ],
                 ),
               ),
@@ -138,19 +117,7 @@ class _ProfilepageState extends State<Profilepage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Container(
-                      height: 50,
-                      width: 320,
-                      decoration: BoxDecoration(
-                          color: Colors.blue.shade50,
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Center(
-                        child: Text(
-                          userAge,
-                          style: const TextStyle(fontWeight: FontWeight.w800),
-                        ),
-                      ),
-                    ),
+                    Profilefield(text: userAge),
                   ],
                 ),
               ),

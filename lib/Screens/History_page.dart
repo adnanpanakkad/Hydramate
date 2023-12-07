@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class ChartSampleData {
-  ChartSampleData({this.xValue, required this.yValue, required this.secondSeriesYValue});
+  ChartSampleData(
+      {this.xValue, required this.yValue, required this.secondSeriesYValue});
 
   final dynamic xValue;
   final num yValue;
@@ -18,21 +19,33 @@ class NumericDefault extends StatefulWidget {
 
 class _NumericDefaultState extends State<NumericDefault> {
   late TooltipBehavior _tooltipBehavior;
-  List<ChartSampleData> chartData = [];
+  List<ChartSampleData> stepsData = [];
+  List<ChartSampleData> waterData = [];
 
   @override
   void initState() {
     _tooltipBehavior = TooltipBehavior(
         enable: true, format: 'Score: point.y', canShowMarker: false);
-    chartData = <ChartSampleData>[
-      ChartSampleData(xValue: 1, yValue: 240, secondSeriesYValue: 236),
-      ChartSampleData(xValue: 2, yValue: 250, secondSeriesYValue: 242),
-      ChartSampleData(xValue: 3, yValue: 281, secondSeriesYValue: 313),
-      ChartSampleData(xValue: 4, yValue: 358, secondSeriesYValue: 359),
-      ChartSampleData(xValue: 5, yValue: 237, secondSeriesYValue: 272),
-      ChartSampleData(xValue: 6, yValue: 358, secondSeriesYValue: 359),
-      ChartSampleData(xValue: 7, yValue: 237, secondSeriesYValue: 272),
+    stepsData = <ChartSampleData>[
+      ChartSampleData(xValue: 1, yValue: 240, secondSeriesYValue: 0),
+      ChartSampleData(xValue: 2, yValue: 250, secondSeriesYValue: 0),
+      ChartSampleData(xValue: 3, yValue: 281, secondSeriesYValue: 0),
+      ChartSampleData(xValue: 4, yValue: 358, secondSeriesYValue: 0),
+      ChartSampleData(xValue: 5, yValue: 237, secondSeriesYValue: 0),
+      ChartSampleData(xValue: 6, yValue: 358, secondSeriesYValue: 0),
+      ChartSampleData(xValue: 7, yValue: 237, secondSeriesYValue: 0),
     ];
+
+    waterData = <ChartSampleData>[
+      ChartSampleData(xValue: 1, yValue: 236, secondSeriesYValue: 0),
+      ChartSampleData(xValue: 2, yValue: 242, secondSeriesYValue: 0),
+      ChartSampleData(xValue: 3, yValue: 313, secondSeriesYValue: 0),
+      ChartSampleData(xValue: 4, yValue: 359, secondSeriesYValue: 0),
+      ChartSampleData(xValue: 5, yValue: 272, secondSeriesYValue: 0),
+      ChartSampleData(xValue: 6, yValue: 359, secondSeriesYValue: 0),
+      ChartSampleData(xValue: 7, yValue: 272, secondSeriesYValue: 0),
+    ];
+
     super.initState();
   }
 
@@ -43,53 +56,64 @@ class _NumericDefaultState extends State<NumericDefault> {
         title: Text('History'),
       ),
       body: Center(
-        child: _buildChart(),
+        child: Column(
+          children: [
+            _buildStepsChart(),
+            _buildWaterChart(),
+          ],
+        ),
       ),
     );
   }
 
-  SfCartesianChart _buildChart() {
+  Widget _buildStepsChart() {
+    return _buildChart('Steps', Colors.amber, stepsData);
+  }
+
+  Widget _buildWaterChart() {
+    return _buildChart('Water', Colors.blue, waterData);
+  }
+
+  Widget _buildChart(
+      String seriesName, Color seriesColor, List<ChartSampleData> data) {
     return SfCartesianChart(
-      title: ChartTitle(text: 'Step-water History'),
+      title: ChartTitle(text: '$seriesName History'),
       plotAreaBorderWidth: 0,
       legend: Legend(isVisible: true, position: LegendPosition.top),
       primaryXAxis: NumericAxis(
           title: AxisTitle(text: 'Day'),
-          minimum: 1,
-          maximum: 7,
+          minimum: 0,
+          maximum: 8,
           interval: 1,
           majorGridLines: MajorGridLines(width: 0),
           majorTickLines: MajorTickLines(size: 0),
           edgeLabelPlacement: EdgeLabelPlacement.hide),
       primaryYAxis: NumericAxis(
-          title: AxisTitle(text: 'Steps'),
+          title: AxisTitle(text: seriesName),
           axisLine: AxisLine(width: 0),
           majorTickLines: MajorTickLines(size: 0)),
-      series: getDefaultNumericSeries(),
+      series: getDefaultNumericSeries(seriesName, seriesColor, data),
       tooltipBehavior: _tooltipBehavior,
     );
   }
 
-  List<ColumnSeries<ChartSampleData, num>> getDefaultNumericSeries() {
+  List<ColumnSeries<ChartSampleData, num>> getDefaultNumericSeries(
+      String seriesName, Color seriesColor, List<ChartSampleData> data) {
     return <ColumnSeries<ChartSampleData, num>>[
       ColumnSeries<ChartSampleData, num>(
-          dataSource: chartData,
-          color: const Color.fromRGBO(237, 221, 76, 1),
-          name: 'Steps',
-          xValueMapper: (ChartSampleData sales, _) => sales.xValue as num,
-          yValueMapper: (ChartSampleData sales, _) => sales.secondSeriesYValue),
-      ColumnSeries<ChartSampleData, num>(
-          dataSource: chartData,
-          color: const Color.fromRGBO(2, 109, 213, 1),
-          xValueMapper: (ChartSampleData sales, _) => sales.xValue as num,
-          yValueMapper: (ChartSampleData sales, _) => sales.yValue,
-          name: 'Water'),
+        dataSource: data,
+        color: seriesColor,
+        xValueMapper: (ChartSampleData sales, _) => sales.xValue as num,
+        yValueMapper: (ChartSampleData sales, _) => sales.yValue,
+        name: seriesName,
+      ),
     ];
   }
 
   @override
   void dispose() {
-    chartData.clear();
+    stepsData.clear();
+    waterData.clear();
     super.dispose();
   }
 }

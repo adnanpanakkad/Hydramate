@@ -41,14 +41,17 @@ class _StepTrackerState extends State<StepTracker> {
       }
     }
   }
+
+  // Subscribe to accelerometer events
   // Subscribe to accelerometer events
   void _subscribeToAccelerometer() {
     _subscription = accelerometerEvents.listen((AccelerometerEvent event) {
       // Assuming that positive values on the Y-axis indicate a step
       print("Accelerometer Event: $event");
-      if (event.y > 10.0) {
+      if (event.y > 15.0) {
         setState(() {
           stepCount++;
+          // Update calories burned calculation
           print("Step Count: $stepCount");
         });
       }
@@ -98,7 +101,7 @@ class _StepTrackerState extends State<StepTracker> {
             ),
             const Text('Calories burned'),
             Text(
-              '$caloriesBurnedToday',
+              '${(stepCount * 0.05).toInt()}',
               style: const TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 90),

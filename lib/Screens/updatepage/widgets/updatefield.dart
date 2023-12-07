@@ -16,13 +16,15 @@ class UpdateTextfield extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 20, left: 20),
       child: SizedBox(
-        height: 80,
+        height: 60,
         width: 500,
         child: Card(
           color: Colors.blue.shade50,
           elevation: 3,
           child: Padding(
-            padding: const EdgeInsets.only(left: 15, top: 10),
+            padding: const EdgeInsets.only(
+              left: 15,
+            ),
             child: TextFormField(
               controller: controller,
               decoration: InputDecoration(
