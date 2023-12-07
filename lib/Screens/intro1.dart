@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:water_tracking_app/Screens/intro2.dart';
 
-
 class Intro1 extends StatelessWidget {
   const Intro1({super.key});
 
@@ -36,9 +35,7 @@ class Intro1 extends StatelessWidget {
                     backgroundColor: Colors.lightBlueAccent.shade100),
                 child: const Text('NEXT'),
                 onPressed: () {
-                  // Navigator.of(context)
-                  //     .push(MaterialPageRoute(builder: (ctx) => const Intro2()));
-                  Get.to(() => Intro2());
+                  Get.to(() => const Intro2());
                 }),
           ),
         ],

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:water_tracking_app/Screens/intro2.dart';
 import 'package:water_tracking_app/Screens/loginpage/login.dart';
 
-
 class Intro3 extends StatelessWidget {
   const Intro3({super.key});
 
@@ -18,8 +17,7 @@ class Intro3 extends StatelessWidget {
             children: [
               IconButton(
                   onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (ctx) => const Intro2()));
+                    Get.to(() => const Intro2());
                   },
                   icon: const Icon(
                     Icons.arrow_back,
@@ -52,7 +50,7 @@ class Intro3 extends StatelessWidget {
                       backgroundColor: Colors.lightBlueAccent.shade100),
                   child: const Text('GET STARTED'),
                   onPressed: () {
-                    Get.to(() => Login());
+                    Get.to(() => const Login());
                   })),
         ],
       ),
