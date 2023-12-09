@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:water_tracking_app/Screens/all_pages.dart';
 import 'package:water_tracking_app/Screens/intro1.dart';
-
 import 'package:water_tracking_app/main.dart';
 import 'package:get/get.dart';
 
