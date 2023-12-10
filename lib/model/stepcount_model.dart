@@ -4,7 +4,7 @@ part 'stepcount_model.g.dart';
 @HiveType(typeId: 2)
 class Userstepdata {
   @HiveField(1)
-  String dailySteps;
+  String dailystepCount;
   @HiveField(2)
   String totalSteps;
   @HiveField(3)
@@ -13,10 +13,11 @@ class Userstepdata {
   String totalCaloriesBurned;
   @HiveField(5)
   DateTime dateIsToday;
-  Userstepdata(
-      {required this.dailySteps,
+  Userstepdata(  
+      {required this.dailystepCount,
       required this.totalSteps,
       required this.caloriesBurnedToday,
       required this.totalCaloriesBurned,
       required this.dateIsToday});
+
 }

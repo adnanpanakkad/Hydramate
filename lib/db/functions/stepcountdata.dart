@@ -1,46 +1,37 @@
-import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:water_tracking_app/model/stepcount_model.dart';
 
-// class StepDb {
-//   String stepBoxKey = 'USERSTEPBOX';
-//   String userstepBoxKey = 'userstepdataBox';
-//   late Box<Userstepdata> userstepdataBox;
+class StepDb {
+  String stepBoxKey = 'USERSTEPBOX';
+  void addUser(Userstepdata value) async {
+    Box stepDb = await Hive.openBox<Userstepdata>(stepBoxKey);
+  }
+  
+}
 
-//   void addUser(Userstepdata value) async {
-//     Box userDb = await Hive.openBox<Userstepdata>(stepBoxKey);
-//     int id=await userDb.
-//   }
-// }
+  // Future<void> saveStepCountInHive(int stepCount) async {
+  //   StepDb stepDb = StepDb();
 
+  //   // Check if there's already data for today
+  //   var existingData = userstepdataBox.values.firstWhere(
+  //     (data) => data.dateIsToday.isAtSameMomentAs(DateTime.now()),
+  //     orElse: () => null,
+  //   );
 
-// class StepDb {
-//   String stepBoxKey = 'USERSTEPBOX';
-//   String userstepBoxKey = 'userstepdataBox';
-//   late Box<Userstepdata> userstepdataBox;
+  //   if (existingData != null) {
+  //     // Update existing data
+  //     existingData.stepCount = stepCount.toString();
+  //     userstepdataBox.put(existingData.dateIsToday, existingData);
+  //   } else {
+  //     // Create a new entry for today
+  //     var newData = Userstepdata(
+  //       stepCount: stepCount.toString(),
+  //       totalSteps: '0', // You may need to update this based on your logic
+  //       caloriesBurnedToday: '0', // You may need to update this based on your logic
+  //       totalCaloriesBurned: '0', // You may need to update this based on your logic
+  //       dateIsToday: DateTime.now(),
+  //     );
 
-//   // Initialize Hive and open the box
-//   Future<void> initializeHive() async {
-//     await Hive.initFlutter();
-//     Hive.registerAdapter(UserstepdataAdapter());
-//     userstepdataBox = await Hive.openBox<Userstepdata>(userstepBoxKey);
-//   }
-
-//   // Add user data to the box
-//   Future<void> addUser(Userstepdata value) async {
-//     await userstepdataBox.add(value);
-//   }
-
-//   // Update dailySteps for a specific date
-//   Future<void> updateDailySteps(DateTime date, String newDailySteps) async {
-//     int index = userstepdataBox.values
-//         .toList()
-//         .indexWhere((element) => element.dateIsToday == date);
-
-//     if (index != -1) {
-//       Userstepdata userData = userstepdataBox.getAt(index)!;
-//       userData.updateDailySteps(newDailySteps);
-//       await userstepdataBox.putAt(index, userData);
-//     }
-//   }
-// }
+  //     userstepdataBox.put(newData.dateIsToday, newData);
+  //   }
+  // }

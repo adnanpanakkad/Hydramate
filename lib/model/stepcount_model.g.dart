@@ -17,7 +17,7 @@ class UserstepdataAdapter extends TypeAdapter<Userstepdata> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Userstepdata(
-      dailySteps: fields[1] as String,
+      dailystepCount: fields[1] as String,
       totalSteps: fields[2] as String,
       caloriesBurnedToday: fields[3] as String,
       totalCaloriesBurned: fields[4] as String,
@@ -30,7 +30,7 @@ class UserstepdataAdapter extends TypeAdapter<Userstepdata> {
     writer
       ..writeByte(5)
       ..writeByte(1)
-      ..write(obj.dailySteps)
+      ..write(obj.dailystepCount)
       ..writeByte(2)
       ..write(obj.totalSteps)
       ..writeByte(3)

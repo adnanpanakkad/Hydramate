@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'dart:async';
-
 import 'package:sensors/sensors.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -10,15 +9,16 @@ class StepTracker extends StatefulWidget {
   const StepTracker({super.key});
 
   @override
-  _StepTrackerState createState() => _StepTrackerState();
+  StepTrackerState createState() => StepTrackerState();
 }
 
-class _StepTrackerState extends State<StepTracker> {
-  int stepCount = 0;
-  int stepCurrent = 0;
-  int totalSteps = 0;
+class StepTrackerState extends State<StepTracker> {
+  int stepCount =  0;
+
   int caloriesBurnedToday = 0;
+  
   late StreamSubscription<AccelerometerEvent> _subscription;
+  
 
   @override
   void initState() {
@@ -62,6 +62,7 @@ class _StepTrackerState extends State<StepTracker> {
   void dispose() {
     caloriesBurnedToday = 0;
     _subscription.cancel();
+    
     super.dispose();
   }
 
