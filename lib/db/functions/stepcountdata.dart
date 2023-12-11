@@ -1,13 +1,13 @@
 import 'package:hive_flutter/adapters.dart';
 import 'package:water_tracking_app/model/stepcount_model.dart';
 
-class StepDb {
-  String stepBoxKey = 'USERSTEPBOX';
-  void addUser(Userstepdata value) async {
-    Box stepDb = await Hive.openBox<Userstepdata>(stepBoxKey);
-  }
+// class StepDb {
+//   String stepBoxKey = 'USERSTEPBOX';
+//   void addUser(Userstepdata value) async {
+//     Box stepDb = await Hive.openBox<Userstepdata>(stepBoxKey);
+//   }
   
-}
+// }
 
   // Future<void> saveStepCountInHive(int stepCount) async {
   //   StepDb stepDb = StepDb();

@@ -93,9 +93,4 @@ Future getPhoto() async {
   } else {
     print('not found');
   }
-
 }
-
-
-  
-

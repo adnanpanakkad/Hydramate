@@ -14,17 +14,17 @@ ValueNotifier<String> imgPath = ValueNotifier('');
 
 void main() async {
   runApp(const MyApp());
-  await getUserDatas();
+  // await getUserDatas();
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   if (!Hive.isAdapterRegistered(UserdataModalAdapter().typeId)) {
     Hive.registerAdapter(UserdataModalAdapter());
   }
-  if (!Hive.isAdapterRegistered(UserstepdataAdapter().typeId)) {
-    Hive.registerAdapter(UserstepdataAdapter());
-  }
-  // await getUserDatas();
+  // if (!Hive.isAdapterRegistered(UserstepdataAdapter().typeId)) {
+  //   Hive.registerAdapter(UserstepdataAdapter());
+  // }
   HiveDb db = HiveDb();
+  //await getUserDatas();
   Box userBox = await Hive.openBox(db.userBoxKey);
 
   final sharedPrefs = await SharedPreferences.getInstance();
@@ -32,9 +32,9 @@ void main() async {
   // String email = sharedPrefs.getString(email_key_Name)!;
 
   // UserdataModal user = await userBox.get(email);
-  // user_name = user.name;
-  // user_age = user.age;
-  // user_email = user.email;
+  // userName = user.name;
+  // userAge = user.age;
+  // userEmail = user.email;
 }
 
 class MyApp extends StatelessWidget {

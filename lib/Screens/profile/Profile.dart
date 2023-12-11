@@ -14,9 +14,11 @@ class Profilepage extends StatefulWidget {
 
   @override
   State<Profilepage> createState() => _ProfilepageState();
+  
 }
 
 class _ProfilepageState extends State<Profilepage> {
+  
   @override
   Widget build(BuildContext context) {
     getUserDatas();
