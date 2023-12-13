@@ -125,7 +125,7 @@ class _SingnupState extends State<Singnup> {
         age.isNotEmpty &&
         email.isNotEmpty) {
       if (user != null) {
-        Get.snackbar('user exists', '');
+        Get.snackbar('user exists','');
       } else {
         UserdataModal model = UserdataModal(
             name: username, age: age, email: email, password: password);
@@ -135,7 +135,7 @@ class _SingnupState extends State<Singnup> {
         await sharedPrefs.setString(email_key_Name, model.email);
         await sharedPrefs.setBool(Save_key_Name, true);
 
-        Get.to(() => MainPage());
+        Get.to(() => const MainPage());
       }
     } else {
       Get.snackbar('fill the fields', '');

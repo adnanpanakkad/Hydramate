@@ -1,7 +1,7 @@
 import 'package:hive_flutter/hive_flutter.dart';
 part 'data_model.g.dart';
 
-@HiveType(typeId: 1)
+@HiveType(typeId: 0)
 class UserdataModal {
   @HiveField(0)
   String name;

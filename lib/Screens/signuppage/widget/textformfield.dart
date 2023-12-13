@@ -22,7 +22,7 @@ class Textfield extends StatelessWidget {
           color: Colors.white,
           elevation: 3,
           child: Padding(
-            padding: const EdgeInsets.only(left: 15,top: 10),
+            padding: const EdgeInsets.only(left: 15, top: 10),
             child: TextFormField(
               controller: Controller,
               decoration: InputDecoration(

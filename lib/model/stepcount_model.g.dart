@@ -6,29 +6,30 @@ part of 'stepcount_model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class UserstepdataAdapter extends TypeAdapter<Userstepdata> {
+class UserstepdataModelAdapter extends TypeAdapter<UserstepdataModel> {
   @override
-  final int typeId = 2;
+  final int typeId = 1;
 
   @override
-  Userstepdata read(BinaryReader reader) {
+  UserstepdataModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Userstepdata(
+    return UserstepdataModel(
       dailystepCount: fields[1] as String,
       totalSteps: fields[2] as String,
       caloriesBurnedToday: fields[3] as String,
       totalCaloriesBurned: fields[4] as String,
       dateIsToday: fields[5] as DateTime,
+      waterglass: fields[6] as String,
     );
   }
 
   @override
-  void write(BinaryWriter writer, Userstepdata obj) {
+  void write(BinaryWriter writer, UserstepdataModel obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(1)
       ..write(obj.dailystepCount)
       ..writeByte(2)
@@ -38,7 +39,9 @@ class UserstepdataAdapter extends TypeAdapter<Userstepdata> {
       ..writeByte(4)
       ..write(obj.totalCaloriesBurned)
       ..writeByte(5)
-      ..write(obj.dateIsToday);
+      ..write(obj.dateIsToday)
+      ..writeByte(6)
+      ..write(obj.waterglass);
   }
 
   @override
@@ -47,7 +50,7 @@ class UserstepdataAdapter extends TypeAdapter<Userstepdata> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is UserstepdataAdapter &&
+      other is UserstepdataModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

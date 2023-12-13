@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 import 'package:water_tracking_app/Screens/History_page.dart';
 import 'package:water_tracking_app/Screens/analysispage/widgets/analysiscontainer.dart';
 import 'package:water_tracking_app/Screens/step_tracker.dart';
+import 'package:water_tracking_app/db/functions/db_functions.dart';
+import 'package:water_tracking_app/model/stepcount_model.dart';
 
 class Analysispage extends StatefulWidget {
   const Analysispage({Key? key}) : super(key: key);
@@ -12,8 +15,28 @@ class Analysispage extends StatefulWidget {
 }
 
 class _AnalysispageState extends State<Analysispage> {
+  String calorieCount = '0';
+
+  getCaloriecount() async {
+    HiveDb db = HiveDb();
+    Box<UserstepdataModel> stepCalorieBox =
+        await Hive.openBox<UserstepdataModel>(db.stepCountBoxKey);
+    UserstepdataModel model = stepCalorieBox.get('UserDetailsTracking')!;
+    setState(() {
+      calorieCount = model.caloriesBurnedToday;
+    });
+  }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   getCaloriecount();
+  // }
+
   @override
   Widget build(BuildContext context) {
+    getCaloriecount();
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -86,7 +109,7 @@ class _AnalysispageState extends State<Analysispage> {
                           ),
                           const SizedBox(height: 50),
                           Text(
-                            '510.43',
+                            calorieCount,
                             style: TextStyle(
                               color: Colors.lightBlueAccent.shade100,
                               fontSize: 30.0,

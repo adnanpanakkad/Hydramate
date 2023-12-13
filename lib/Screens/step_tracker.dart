@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 import 'package:lottie/lottie.dart';
 import 'dart:async';
 import 'package:sensors/sensors.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:water_tracking_app/db/functions/db_functions.dart';
+import 'package:water_tracking_app/model/stepcount_model.dart';
 
 class StepTracker extends StatefulWidget {
   const StepTracker({super.key});
@@ -13,16 +16,18 @@ class StepTracker extends StatefulWidget {
 }
 
 class StepTrackerState extends State<StepTracker> {
-  int stepCount =  0;
+  int stepCount = 0;
+  String calorieCount = '0';
 
   int caloriesBurnedToday = 0;
-  
+
   late StreamSubscription<AccelerometerEvent> _subscription;
-  
 
   @override
   void initState() {
     super.initState();
+    _loadStepCountFromHive(); // Load step count when the page is initialized
+    getCaloriecount(); // load calorie from the db
     _checkPermission();
   }
 
@@ -44,17 +49,55 @@ class StepTrackerState extends State<StepTracker> {
 
   // Subscribe to accelerometer events
   // Subscribe to accelerometer events
+  // void _subscribeToAccelerometer() {
+  //   _subscription = accelerometerEvents.listen((AccelerometerEvent event) {
+  //     // Assuming that positive values on the Y-axis indicate a step
+  //     print("Accelerometer Event: $event");
+  //     if (event.y > 15.0) {
+  //       setState(() {
+  //         stepCount++;
+  //         // Update calories burned calculation
+  //         print("Step Count: $stepCount");
+  //       });
+  //     }
+  //   });
+  // }
   void _subscribeToAccelerometer() {
     _subscription = accelerometerEvents.listen((AccelerometerEvent event) {
       // Assuming that positive values on the Y-axis indicate a step
-      print("Accelerometer Event: $event");
+      // print("Accelerometer Event: $event");
       if (event.y > 15.0) {
         setState(() {
           stepCount++;
+          HiveDb().updateStepCount(stepCount); // Update step count in Hive
+          HiveDb().updateCalorieCount(
+              (stepCount * 0.05).toInt()); // Update step count in Hive
+          // updateCaloriecount();
           // Update calories burned calculation
-          print("Step Count: $stepCount");
+          // print("Step Count: $stepCount");
         });
       }
+    });
+  }
+
+  // Load step count from Hive
+  void _loadStepCountFromHive() async {
+    HiveDb db = HiveDb();
+    Box<UserstepdataModel> stepCountBox =
+        await Hive.openBox<UserstepdataModel>(db.stepCountBoxKey);
+    UserstepdataModel? model = stepCountBox.get('UserDetailsTracking');
+    setState(() {
+      stepCount = int.parse(model!.dailystepCount);
+    });
+  }
+
+  getCaloriecount() async {
+    HiveDb db = HiveDb();
+    Box<UserstepdataModel> stepCalorieBox =
+        await Hive.openBox<UserstepdataModel>(db.stepCountBoxKey);
+    UserstepdataModel model = stepCalorieBox.get('UserDetailsTracking')!;
+    setState(() {
+      calorieCount = model.caloriesBurnedToday;
     });
   }
 
@@ -62,7 +105,7 @@ class StepTrackerState extends State<StepTracker> {
   void dispose() {
     caloriesBurnedToday = 0;
     _subscription.cancel();
-    
+
     super.dispose();
   }
 
