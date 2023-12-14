@@ -46,22 +46,7 @@ class StepTrackerState extends State<StepTracker> {
       }
     }
   }
-
   // Subscribe to accelerometer events
-  // Subscribe to accelerometer events
-  // void _subscribeToAccelerometer() {
-  //   _subscription = accelerometerEvents.listen((AccelerometerEvent event) {
-  //     // Assuming that positive values on the Y-axis indicate a step
-  //     print("Accelerometer Event: $event");
-  //     if (event.y > 15.0) {
-  //       setState(() {
-  //         stepCount++;
-  //         // Update calories burned calculation
-  //         print("Step Count: $stepCount");
-  //       });
-  //     }
-  //   });
-  // }
   void _subscribeToAccelerometer() {
     _subscription = accelerometerEvents.listen((AccelerometerEvent event) {
       // Assuming that positive values on the Y-axis indicate a step
@@ -72,14 +57,10 @@ class StepTrackerState extends State<StepTracker> {
           HiveDb().updateStepCount(stepCount); // Update step count in Hive
           HiveDb().updateCalorieCount(
               (stepCount * 0.05).toInt()); // Update step count in Hive
-          // updateCaloriecount();
-          // Update calories burned calculation
-          // print("Step Count: $stepCount");
         });
       }
     });
   }
-
   // Load step count from Hive
   void _loadStepCountFromHive() async {
     HiveDb db = HiveDb();
@@ -90,7 +71,6 @@ class StepTrackerState extends State<StepTracker> {
       stepCount = int.parse(model!.dailystepCount);
     });
   }
-
   getCaloriecount() async {
     HiveDb db = HiveDb();
     Box<UserstepdataModel> stepCalorieBox =
@@ -105,7 +85,6 @@ class StepTrackerState extends State<StepTracker> {
   void dispose() {
     caloriesBurnedToday = 0;
     _subscription.cancel();
-
     super.dispose();
   }
 

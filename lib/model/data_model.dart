@@ -11,9 +11,8 @@ class UserdataModal {
   String email;
   @HiveField(3)
   String password;
-    @HiveField(4)
+  @HiveField(4)
   String? imgPath = 'assets/images/pokiman.png';
- 
 
   UserdataModal({
     required this.name,

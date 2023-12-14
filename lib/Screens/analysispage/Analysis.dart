@@ -27,12 +27,6 @@ class _AnalysispageState extends State<Analysispage> {
     });
   }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   getCaloriecount();
-  // }
-
   @override
   Widget build(BuildContext context) {
     getCaloriecount();

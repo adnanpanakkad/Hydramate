@@ -32,9 +32,13 @@ class HiveDb {
     model.caloriesBurnedToday = calorie.toString();
     stepCountBox.put('UserDetailsTracking',model);
   }
-
-// get calorie On
- 
+// waterglass
+ void updateWaterGlassCount(int waterGlassCount) async {
+    Box stepCountBox = await Hive.openBox<UserstepdataModel>(stepCountBoxKey);
+    UserstepdataModel model = stepCountBox.get('UserDetailsTracking');
+    model.waterglass = waterGlassCount.toString();
+    stepCountBox.put('UserDetailsTracking', model);
+  }
 }
 
 getUserImg() async {

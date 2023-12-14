@@ -8,17 +8,13 @@ import 'package:water_tracking_app/Screens/updatepage/updateprofile.dart';
 import 'package:water_tracking_app/main.dart';
 
 class Profilepage extends StatefulWidget {
-  const Profilepage({
-    super.key,
-  });
+  const Profilepage({super.key});
 
   @override
   State<Profilepage> createState() => _ProfilepageState();
-  
 }
 
 class _ProfilepageState extends State<Profilepage> {
-  
   @override
   Widget build(BuildContext context) {
     getUserDatas();

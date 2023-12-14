@@ -18,11 +18,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final ValueNotifier<String?> _selectedItemNotifier = ValueNotifier<String?>('1');
-
-  double percentage = 0;
-
+  final ValueNotifier<String?> _selectedItemNotifier =
+      ValueNotifier<String?>('1');
   String? get selecteditem => _selectedItemNotifier.value;
+  double percentage = 0;
 
   incrementPercentage() {
     setState(() {
@@ -43,6 +42,7 @@ class _HomePageState extends State<HomePage> {
       }
     });
   }
+
   @override
   Widget build(BuildContext context) {
     getUserImg();
