@@ -34,6 +34,7 @@ class _HomePageState extends State<HomePage> {
       }
     });
   }
+
   decrementPercentage() {
     setState(() {
       percentage -= 0.1;

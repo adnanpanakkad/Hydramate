@@ -30,7 +30,6 @@ class _AnalysispageState extends State<Analysispage> {
   @override
   Widget build(BuildContext context) {
     getCaloriecount();
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,

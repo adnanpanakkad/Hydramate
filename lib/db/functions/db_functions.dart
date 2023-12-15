@@ -24,7 +24,6 @@ class HiveDb {
     stepCountBox.put('UserDetailsTracking', model);
     print('step count printing from db ${model.dailystepCount}');
   }
-
   // Function to update calorie count in Hive
   void updateCalorieCount(int calorie) async {
     Box stepCountBox = await Hive.openBox<UserstepdataModel>(stepCountBoxKey);
@@ -33,10 +32,10 @@ class HiveDb {
     stepCountBox.put('UserDetailsTracking',model);
   }
 // waterglass
- void updateWaterGlassCount(int waterGlassCount) async {
+ void updateWaterGlassCount(int selecteditem) async {
     Box stepCountBox = await Hive.openBox<UserstepdataModel>(stepCountBoxKey);
     UserstepdataModel model = stepCountBox.get('UserDetailsTracking');
-    model.waterglass = waterGlassCount.toString();
+    model.waterglass = selecteditem.toString();
     stepCountBox.put('UserDetailsTracking', model);
   }
 }
