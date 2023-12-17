@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:water_tracking_app/Screens/appinfo.dart';
 import 'dart:io';
-
 import 'package:water_tracking_app/Screens/homepage/functions/popup.dart';
+import 'package:water_tracking_app/Screens/privacy_policy.dart';
+import 'package:water_tracking_app/db/functions/db_functions.dart';
 
 class AppDrawer extends StatelessWidget {
   final String userName;
@@ -61,32 +64,35 @@ class AppDrawer extends StatelessWidget {
               color: Color.fromARGB(255, 79, 187, 238),
             ),
           ),
-          ListTile(
-            leading: const Icon(Icons.delete),
-            title: const Text('Clear App Data'),
-            onTap: () {
-              // Add your logic for clearing app data
-            },
+          const ListTile(
+            leading: Icon(Icons.delete),
+            title: Text('Clear App Data'),
+            // onTap: () async {
+            //   // Add your logic for clearing app data
+            //   HiveDb db = HiveDb();
+            //   await db.clearAllData();
+            // },
           ),
           ListTile(
             leading: const Icon(Icons.report),
             title: const Text('App info'),
             onTap: () {
               // Add your logic for displaying app info
+              Get.to(() => const AppInfoPage());
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.library_books),
-            title: const Text('Terms & Conditions'),
-            onTap: () {
-              // Add your logic for displaying terms & conditions
-            },
-          ),
+          // ListTile(
+          //   leading: const Icon(Icons.library_books),
+          //   title: const Text('Terms & Conditions'),
+          //   onTap: () {
+
+          //   },
+          // ),
           ListTile(
             leading: const Icon(Icons.privacy_tip),
             title: const Text('Privacy & Policy'),
             onTap: () {
-              // Add your logic for displaying privacy & policy
+              Get.to(() => const PrivacyPolicyPage());
             },
           ),
           ListTile(

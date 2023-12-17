@@ -16,7 +16,6 @@ class Analysispage extends StatefulWidget {
 
 class _AnalysispageState extends State<Analysispage> {
   String calorieCount = '0';
-
   getCaloriecount() async {
     HiveDb db = HiveDb();
     Box<UserstepdataModel> stepCalorieBox =
