@@ -4,10 +4,10 @@ class PrivacyPolicyPage extends StatefulWidget {
   const PrivacyPolicyPage({super.key});
 
   @override
-  _PrivacyPolicyPageState createState() => _PrivacyPolicyPageState();
+  PrivacyPolicyPageState createState() => PrivacyPolicyPageState();
 }
 
-class _PrivacyPolicyPageState extends State<PrivacyPolicyPage> {
+class PrivacyPolicyPageState extends State<PrivacyPolicyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

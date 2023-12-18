@@ -11,10 +11,10 @@ class Analysispage extends StatefulWidget {
   const Analysispage({Key? key}) : super(key: key);
 
   @override
-  State<Analysispage> createState() => _AnalysispageState();
+  State<Analysispage> createState() => AnalysispageState();
 }
 
-class _AnalysispageState extends State<Analysispage> {
+class AnalysispageState extends State<Analysispage> {
   String calorieCount = '0';
   getCaloriecount() async {
     HiveDb db = HiveDb();
@@ -61,7 +61,7 @@ class _AnalysispageState extends State<Analysispage> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (ctx) => StepTracker(),
+                          builder: (ctx) => const StepTracker(),
                         ),
                       );
                     },

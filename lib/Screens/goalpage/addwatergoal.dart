@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:water_tracking_app/Screens/goalpage/widgets/goalitemcontainer.dart';
+import 'package:water_tracking_app/db/functions/db_functions.dart';
+import 'package:water_tracking_app/model/stepcount_model.dart';
 
 class Addgoal extends StatefulWidget {
   const Addgoal({Key? key, required this.selectedItemNotifier})
@@ -8,18 +11,33 @@ class Addgoal extends StatefulWidget {
   final ValueNotifier<String?> selectedItemNotifier;
 
   @override
-  _AddgoalState createState() => _AddgoalState();
+  AddgoalState createState() => AddgoalState();
 }
 
-class _AddgoalState extends State<Addgoal> {
+class AddgoalState extends State<Addgoal> {
   List<String> numofglass = ['1', '2', '3', '4', '5', '10', '15', '20'];
   String? selecteditem = '1';
   late String? selectedItemInContainer = selecteditem;
   @override
   void initState() {
     super.initState();
+    loadglasscountHive();
     selecteditem = '1'; // Initialize selecteditem inside initState
-    widget.selectedItemNotifier.value = selecteditem; // Initialize the notifier
+    widget.selectedItemNotifier.value = selecteditem;
+
+    // Initialize the notifier
+  }
+
+  loadglasscountHive() async {
+    HiveDb db = HiveDb();
+    Box<UserstepdataModel> glassCountBox =
+        await Hive.openBox<UserstepdataModel>(db.stepCountBoxKey);
+    UserstepdataModel? model = glassCountBox.get('UserDetailsTracking');
+    if (model != null) {
+      setState(() {
+        selecteditem = model.waterglass; // Parse as a string
+      });
+    }
   }
 
   @override
@@ -99,8 +117,10 @@ class _AddgoalState extends State<Addgoal> {
                             onChanged: (item) {
                               setState(() {
                                 selecteditem = item!;
-                                widget.selectedItemNotifier.value =
-                                    item; // Notify the change
+                                widget.selectedItemNotifier.value = item;
+                                // Update the selected glass count in Hive
+                                HiveDb().updateWaterGlassCount(
+                                    int.parse(selecteditem!));
                               });
                             },
                           ),

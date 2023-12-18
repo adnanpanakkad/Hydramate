@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
-class AnalysisPageCardes extends StatelessWidget {
+class AnalysisPageCardes extends StatefulWidget {
   const AnalysisPageCardes({super.key});
 
+  @override
+  State<AnalysisPageCardes> createState() => _AnalysisPageCardesState();
+}
+
+class _AnalysisPageCardesState extends State<AnalysisPageCardes> {
   @override
   Widget build(BuildContext context) {
     return Card(

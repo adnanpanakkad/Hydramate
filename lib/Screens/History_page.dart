@@ -14,10 +14,10 @@ class NumericDefault extends StatefulWidget {
   const NumericDefault({Key? key}) : super(key: key);
 
   @override
-  _NumericDefaultState createState() => _NumericDefaultState();
+  NumericDefaultState createState() => NumericDefaultState();
 }
 
-class _NumericDefaultState extends State<NumericDefault> {
+class NumericDefaultState extends State<NumericDefault> {
   late TooltipBehavior _tooltipBehavior;
   List<ChartSampleData> stepsData = [];
   List<ChartSampleData> waterData = [];
@@ -27,7 +27,7 @@ class _NumericDefaultState extends State<NumericDefault> {
     _tooltipBehavior = TooltipBehavior(
         enable: true, format: 'Score: point.y', canShowMarker: false);
     stepsData = <ChartSampleData>[
-      ChartSampleData(xValue: 1, yValue: 240, secondSeriesYValue: 0),
+      ChartSampleData(xValue: DateTime.december, yValue: 240, secondSeriesYValue: 0),
       ChartSampleData(xValue: 2, yValue: 250, secondSeriesYValue: 0),
       ChartSampleData(xValue: 3, yValue: 281, secondSeriesYValue: 0),
       ChartSampleData(xValue: 4, yValue: 358, secondSeriesYValue: 0),
