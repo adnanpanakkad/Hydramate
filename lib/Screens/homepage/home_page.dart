@@ -22,10 +22,10 @@ class _HomePageState extends State<HomePage> {
       ValueNotifier<String?>('1');
   String? get selecteditem => _selectedItemNotifier.value;
   double percentage = 0;
-
   incrementPercentage() {
     setState(() {
-      percentage += 0.1;
+      double selectedItem = double.parse(selecteditem!);
+      percentage += 0.1*selectedItem;
       if (percentage >= 1.0) {
         percentage = 1.0;
         if (percentage == 1.0) {
@@ -37,7 +37,8 @@ class _HomePageState extends State<HomePage> {
 
   decrementPercentage() {
     setState(() {
-      percentage -= 0.1;
+      int selectedItem = int.parse(selecteditem!);
+      percentage -= 0.1 * selectedItem;
       if (percentage < 0.0) {
         percentage = 0.0;
       }

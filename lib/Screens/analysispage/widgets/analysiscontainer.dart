@@ -105,4 +105,3 @@ class Analysiscard extends StatelessWidget {
     );
   }
 }
-

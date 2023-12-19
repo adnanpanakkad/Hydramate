@@ -4,7 +4,6 @@ import 'package:water_tracking_app/Screens/appinfo.dart';
 import 'dart:io';
 import 'package:water_tracking_app/Screens/homepage/functions/popup.dart';
 import 'package:water_tracking_app/Screens/privacy_policy.dart';
-import 'package:water_tracking_app/db/functions/db_functions.dart';
 
 class AppDrawer extends StatelessWidget {
   final String userName;

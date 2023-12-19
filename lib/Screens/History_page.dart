@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:water_tracking_app/db/functions/db_functions.dart';
+import 'package:water_tracking_app/model/stepcount_model.dart';
 
 class ChartSampleData {
-  ChartSampleData(
-      {this.xValue, required this.yValue, required this.secondSeriesYValue});
+  ChartSampleData({
+    this.xValue,
+    required this.yValue,
+    // required this.secondSeriesYValue,
+  });
 
   final dynamic xValue;
   final num yValue;
-  final num secondSeriesYValue;
+  // final num secondSeriesYValue;
 }
 
 class NumericDefault extends StatefulWidget {
@@ -22,28 +28,40 @@ class NumericDefaultState extends State<NumericDefault> {
   List<ChartSampleData> stepsData = [];
   List<ChartSampleData> waterData = [];
 
+  int stepCount = 0;
+
+  void _loadStepCountFromHive() async {
+    HiveDb db = HiveDb();
+    Box<UserstepdataModel> stepCountBox =
+        await Hive.openBox<UserstepdataModel>(db.stepCountBoxKey);
+    UserstepdataModel? model = stepCountBox.get('UserDetailsTracking');
+    setState(() {
+      stepCount = int.parse(model!.dailystepCount);
+    });
+  }    
+
   @override
   void initState() {
     _tooltipBehavior = TooltipBehavior(
         enable: true, format: 'Score: point.y', canShowMarker: false);
     stepsData = <ChartSampleData>[
-      ChartSampleData(xValue: DateTime.december, yValue: 240, secondSeriesYValue: 0),
-      ChartSampleData(xValue: 2, yValue: 250, secondSeriesYValue: 0),
-      ChartSampleData(xValue: 3, yValue: 281, secondSeriesYValue: 0),
-      ChartSampleData(xValue: 4, yValue: 358, secondSeriesYValue: 0),
-      ChartSampleData(xValue: 5, yValue: 237, secondSeriesYValue: 0),
-      ChartSampleData(xValue: 6, yValue: 358, secondSeriesYValue: 0),
-      ChartSampleData(xValue: 7, yValue: 237, secondSeriesYValue: 0),
+      ChartSampleData(xValue: 'Mon', yValue: stepCount),
+      ChartSampleData(xValue: 'Tue', yValue: stepCount),
+      ChartSampleData(xValue: 'Wed', yValue: stepCount),
+      ChartSampleData(xValue: 'Thu', yValue: stepCount),
+      ChartSampleData(xValue: 'Fri', yValue: stepCount),
+      ChartSampleData(xValue: 'Sat', yValue: stepCount),
+      ChartSampleData(xValue: 'Sun', yValue: stepCount),
     ];
 
     waterData = <ChartSampleData>[
-      ChartSampleData(xValue: 1, yValue: 236, secondSeriesYValue: 0),
-      ChartSampleData(xValue: 2, yValue: 242, secondSeriesYValue: 0),
-      ChartSampleData(xValue: 3, yValue: 313, secondSeriesYValue: 0),
-      ChartSampleData(xValue: 4, yValue: 359, secondSeriesYValue: 0),
-      ChartSampleData(xValue: 5, yValue: 272, secondSeriesYValue: 0),
-      ChartSampleData(xValue: 6, yValue: 359, secondSeriesYValue: 0),
-      ChartSampleData(xValue: 7, yValue: 272, secondSeriesYValue: 0),
+      ChartSampleData(xValue: 'Mon', yValue: 236,  ),
+      ChartSampleData(xValue: 'Tue', yValue: 242, ),
+      ChartSampleData(xValue: 'Wed', yValue: 313, ),
+      ChartSampleData(xValue: 'Thu', yValue: 359, ),
+      ChartSampleData(xValue: 'Fri', yValue: 272, ),
+      ChartSampleData(xValue: 'Sat', yValue: 359, ),
+      ChartSampleData(xValue: 'Sun', yValue: 272, ),
     ];
 
     super.initState();
@@ -67,7 +85,7 @@ class NumericDefaultState extends State<NumericDefault> {
   }
 
   Widget _buildStepsChart() {
-    return _buildChart('Steps', Colors.amber, stepsData);
+    return _buildChart('Step Count', Colors.amber, stepsData);
   }
 
   Widget _buildWaterChart() {
@@ -80,14 +98,11 @@ class NumericDefaultState extends State<NumericDefault> {
       title: ChartTitle(text: '$seriesName History'),
       plotAreaBorderWidth: 0,
       legend: Legend(isVisible: true, position: LegendPosition.top),
-      primaryXAxis: NumericAxis(
-          title: AxisTitle(text: 'Day'),
-          minimum: 0,
-          maximum: 8,
-          interval: 1,
-          majorGridLines: MajorGridLines(width: 0),
-          majorTickLines: MajorTickLines(size: 0),
-          edgeLabelPlacement: EdgeLabelPlacement.hide),
+      primaryXAxis: CategoryAxis(
+        title: AxisTitle(text: 'Day'),
+        majorGridLines: MajorGridLines(width: 0),
+        majorTickLines: MajorTickLines(size: 0),
+      ),
       primaryYAxis: NumericAxis(
           title: AxisTitle(text: seriesName),
           axisLine: AxisLine(width: 0),
@@ -97,13 +112,13 @@ class NumericDefaultState extends State<NumericDefault> {
     );
   }
 
-  List<ColumnSeries<ChartSampleData, num>> getDefaultNumericSeries(
+  List<ColumnSeries<ChartSampleData, String>> getDefaultNumericSeries(
       String seriesName, Color seriesColor, List<ChartSampleData> data) {
-    return <ColumnSeries<ChartSampleData, num>>[
-      ColumnSeries<ChartSampleData, num>(
+    return <ColumnSeries<ChartSampleData, String>>[
+      ColumnSeries<ChartSampleData, String>(
         dataSource: data,
         color: seriesColor,
-        xValueMapper: (ChartSampleData sales, _) => sales.xValue as num,
+        xValueMapper: (ChartSampleData sales, _) => sales.xValue as String,
         yValueMapper: (ChartSampleData sales, _) => sales.yValue,
         name: seriesName,
       ),

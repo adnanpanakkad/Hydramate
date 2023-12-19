@@ -35,7 +35,6 @@ void main() async {
       await stepCountBox.put('UserDetailsTracking', newModel);
     }
   }
-
   HiveDb db = HiveDb();
   Box userBox = await Hive.openBox(db.userBoxKey);
 
