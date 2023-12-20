@@ -13,6 +13,7 @@ ValueNotifier<String> imgPath = ValueNotifier('');
 
 void main() async {
   runApp(const MyApp());
+
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   if (!Hive.isAdapterRegistered(UserdataModalAdapter().typeId)) {
