@@ -9,7 +9,7 @@ import 'package:water_tracking_app/db/functions/db_functions.dart';
 import 'package:water_tracking_app/model/stepcount_model.dart';
 
 class StepTracker extends StatefulWidget {
-  const StepTracker({super.key});
+  const StepTracker({Key? key}) : super(key: key);
 
   @override
   StepTrackerState createState() => StepTrackerState();
@@ -18,20 +18,44 @@ class StepTracker extends StatefulWidget {
 class StepTrackerState extends State<StepTracker> {
   int stepCount = 0;
   String calorieCount = '0';
-
   int caloriesBurnedToday = 0;
-
   late StreamSubscription<AccelerometerEvent> _subscription;
 
   @override
   void initState() {
     super.initState();
-    _loadStepCountFromHive(); // Load step count when the page is initialized
-    getCaloriecount(); // load calorie from the db
+    resetStepCounterAtMidnight();
+    _loadStepCountFromHive();
+    getCaloriecount();
     _checkPermission();
   }
 
-  // Check and request permission
+  void resetStepCounterAtMidnight() {
+    DateTime now = DateTime.now();
+    DateTime nextMidnight = DateTime(now.year, now.month, now.day + 1, 0, 0, 0);
+    Duration timeUntilMidnight = nextMidnight.difference(now);
+
+    Timer.periodic(Duration(days: 1), (Timer timer) {
+      setState(() {
+        stepCount = 0;
+        HiveDb().updateStepCount(stepCount);
+        // You may also want to update other related data or perform additional tasks here
+      });
+    });
+
+    if (now.isBefore(nextMidnight)) {
+      Timer(timeUntilMidnight, () {
+        // Reset the step counter immediately after the initial check
+        setState(() {
+          stepCount = 0;
+          HiveDb().updateStepCount(stepCount);
+          // You may also want to update other related data or perform additional tasks here
+        });
+        resetStepCounterAtMidnight(); // Reschedule for the next day
+      });
+    }
+  }
+
   Future<void> _checkPermission() async {
     var status = await Permission.sensors.status;
     if (status.isGranted) {
@@ -41,27 +65,23 @@ class StepTrackerState extends State<StepTracker> {
       if (result.isGranted) {
         _subscribeToAccelerometer();
       } else {
-        // Handle the case where permission is denied
         print("Permission denied");
       }
     }
   }
-  // Subscribe to accelerometer events
+
   void _subscribeToAccelerometer() {
     _subscription = accelerometerEvents.listen((AccelerometerEvent event) {
-      // Assuming that positive values on the Y-axis indicate a step
-      // print("Accelerometer Event: $event");
       if (event.y > 15.0) {
         setState(() {
           stepCount++;
-          HiveDb().updateStepCount(stepCount); // Update step count in Hive
-          HiveDb().updateCalorieCount(
-              (stepCount * 0.05).toInt()); // Update step count in Hive
+          HiveDb().updateStepCount(stepCount);
+          HiveDb().updateCalorieCount((stepCount * 0.05).toInt());
         });
       }
     });
   }
-  // Load step count from Hive
+
   void _loadStepCountFromHive() async {
     HiveDb db = HiveDb();
     Box<UserstepdataModel> stepCountBox =
@@ -71,6 +91,7 @@ class StepTrackerState extends State<StepTracker> {
       stepCount = int.parse(model!.dailystepCount);
     });
   }
+
   getCaloriecount() async {
     HiveDb db = HiveDb();
     Box<UserstepdataModel> stepCalorieBox =
@@ -91,7 +112,7 @@ class StepTrackerState extends State<StepTracker> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true, // Ensure the body is behind the app bar
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.transparent,
@@ -129,13 +150,14 @@ class StepTrackerState extends State<StepTracker> {
             ),
             const SizedBox(height: 90),
             IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: const Icon(
-                  Icons.close,
-                  size: 50,
-                )),
+              onPressed: () {
+                Get.back();
+              },
+              icon: const Icon(
+                Icons.close,
+                size: 50,
+              ),
+            ),
           ],
         ),
       ),

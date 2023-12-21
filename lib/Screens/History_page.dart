@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:water_tracking_app/db/functions/db_functions.dart';
 import 'package:water_tracking_app/model/stepcount_model.dart';
+import 'package:intl/intl.dart';
 
 class ChartSampleData {
   ChartSampleData({
@@ -47,7 +48,6 @@ class NumericDefaultState extends State<NumericDefault> {
         await Hive.openBox<UserstepdataModel>(db.stepCountBoxKey);
     UserstepdataModel? model = waterBox.get('UserDetailsTracking');
     setState(() {
-      // Assuming 'waterglass' is a field that stores daily water consumption
       int waterConsumption = int.parse(model!.waterglass);
       _updateWaterChart(waterConsumption);
     });
@@ -86,11 +86,12 @@ class NumericDefaultState extends State<NumericDefault> {
   }
 
   Widget _buildWaterChart() {
-    return _buildChart('Water (number of glass)', Colors.blue, waterData, 'waterValue');
+    return _buildChart(
+        'Water (number of glass)', Colors.blue, waterData, 'waterValue');
   }
 
-  Widget _buildChart(
-      String seriesName, Color seriesColor, List<ChartSampleData> data, String valueField) {
+  Widget _buildChart(String seriesName, Color seriesColor,
+      List<ChartSampleData> data, String valueField) {
     return SfCartesianChart(
       title: ChartTitle(text: '$seriesName History'),
       plotAreaBorderWidth: 0,
@@ -104,13 +105,17 @@ class NumericDefaultState extends State<NumericDefault> {
           title: AxisTitle(text: seriesName),
           axisLine: AxisLine(width: 0),
           majorTickLines: MajorTickLines(size: 0)),
-      series: getDefaultNumericSeries(seriesName, seriesColor, data, valueField),
+      series:
+          getDefaultNumericSeries(seriesName, seriesColor, data, valueField),
       tooltipBehavior: _tooltipBehavior,
     );
   }
 
   List<ColumnSeries<ChartSampleData, String>> getDefaultNumericSeries(
-      String seriesName, Color seriesColor, List<ChartSampleData> data, String valueField) {
+      String seriesName,
+      Color seriesColor,
+      List<ChartSampleData> data,
+      String valueField) {
     return <ColumnSeries<ChartSampleData, String>>[
       ColumnSeries<ChartSampleData, String>(
         dataSource: data,
@@ -139,31 +144,88 @@ class NumericDefaultState extends State<NumericDefault> {
   }
 
   void _updateStepCountChart(int newStepCount) {
+    final List<String> days = _generateDays();
+    final String today = _getFormattedDate(DateTime.now());
+
     setState(() {
-      stepsData = <ChartSampleData>[
-        ChartSampleData(xValue: 'Mon', yValue: newStepCount),
-        ChartSampleData(xValue: 'Tue', yValue: newStepCount),
-        ChartSampleData(xValue: 'Wed', yValue: newStepCount),
-        ChartSampleData(xValue: 'Thu', yValue: newStepCount),
-        ChartSampleData(xValue: 'Fri', yValue: newStepCount),
-        ChartSampleData(xValue: 'Sat', yValue: newStepCount),
-        ChartSampleData(xValue: 'Sun', yValue: newStepCount),
-      ];
+      stepsData = List.generate(
+        days.length,
+        (index) => ChartSampleData(
+          xValue: days[index],
+          yValue: _getStepCountForDay(days[index], newStepCount),
+        ),
+      );
     });
   }
 
   void _updateWaterChart(int waterConsumption) {
+    final List<String> days = _generateDays();
+    final String today = _getFormattedDate(DateTime.now());
+
     setState(() {
-      waterData = <ChartSampleData>[
-        ChartSampleData(xValue: 'Mon', waterValue: waterConsumption, yValue: 0),
-        ChartSampleData(xValue: 'Tue', waterValue: waterConsumption, yValue: 0),
-        ChartSampleData(xValue: 'Wed', waterValue: waterConsumption,yValue: 0),
-        ChartSampleData(xValue: 'Thu', waterValue: waterConsumption,yValue: 0),
-        ChartSampleData(xValue: 'Fri', waterValue: waterConsumption,yValue: 0),
-        ChartSampleData(xValue: 'Sat', waterValue: waterConsumption,yValue: 0),
-        ChartSampleData(xValue: 'Sun', waterValue: waterConsumption,yValue: 0),
-      ];
+      waterData = List.generate(
+        days.length,
+        (index) => ChartSampleData(
+          xValue: days[index],
+          waterValue: _getWaterConsumptionForDay(days[index], waterConsumption),
+          yValue: 0,
+        ),
+      );
     });
   }
+
+ int _getStepCountForDay(String day, int newStepCount) {
+  // Assume you have a method to fetch historical step count data for the day
+  // If data is not available, default to 0
+  int previousStepCount = _fetchHistoricalStepCount(day) ?? 0;
+  
+  // Add today's step count to the previous step count
+  return day == _getFormattedDate(DateTime.now())
+      ? newStepCount + previousStepCount
+      : previousStepCount;
 }
-// The rest of your code remains unchanged.
+
+int _getWaterConsumptionForDay(String day, int waterConsumption) {
+  // Assume you have a method to fetch historical water consumption data for the day
+  // If data is not available, default to 0
+  int previousWaterConsumption = _fetchHistoricalWaterConsumption(day) ?? 0;
+  
+  // Add today's water consumption to the previous water consumption
+  return day == _getFormattedDate(DateTime.now())
+      ? waterConsumption + previousWaterConsumption
+      : previousWaterConsumption;
+}
+
+// Replace the following methods with your actual code to fetch historical data
+int? _fetchHistoricalStepCount(String day) {
+  // Implement code to fetch historical step count data for the given day
+  // Return null if data is not available
+  return null;
+}
+
+int? _fetchHistoricalWaterConsumption(String day) {
+  // Implement code to fetch historical water consumption data for the given day
+  // Return null if data is not available
+  return null;
+}
+
+
+  List<String> _generateDays() {
+    final List<String> days = [];
+    final DateTime now = DateTime.now();
+    final DateFormat formatter = DateFormat('EEE');
+
+    for (int i = 6; i >= 0; i--) {
+      final DateTime day = now.subtract(Duration(days: i));
+      final String formattedDay = formatter.format(day);
+      days.add(formattedDay);
+    }
+
+    return days.reversed.toList();
+  }
+
+  String _getFormattedDate(DateTime date) {
+    final DateFormat formatter = DateFormat('EEE');
+    return formatter.format(date);
+  }
+}

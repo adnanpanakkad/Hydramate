@@ -1,14 +1,19 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:water_tracking_app/Screens/all_pages.dart';
+import 'package:water_tracking_app/Screens/goalpage/addwatergoal.dart';
 import 'package:water_tracking_app/Screens/homepage/functions/bmifunctions.dart';
 import 'package:water_tracking_app/Screens/homepage/widgets/appdrawer.dart';
 import 'package:water_tracking_app/Screens/homepage/widgets/glassaddbutton.dart';
 import 'package:water_tracking_app/Screens/homepage/widgets/maincard.dart';
 import 'package:water_tracking_app/db/functions/db_functions.dart';
 import 'package:water_tracking_app/main.dart';
+import 'package:water_tracking_app/model/stepcount_model.dart';
+
+final ValueNotifier<String> selectedItemNotifier = ValueNotifier<String>('1');
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,14 +23,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final ValueNotifier<String?> _selectedItemNotifier =
-      ValueNotifier<String?>('1');
-  String? get selecteditem => _selectedItemNotifier.value;
   double percentage = 0;
   incrementPercentage() {
     setState(() {
-      double selectedItem = double.parse(selecteditem!);
-      percentage += 0.1*selectedItem;
+      percentage += 0.1;
       if (percentage >= 1.0) {
         percentage = 1.0;
         if (percentage == 1.0) {
@@ -37,12 +38,27 @@ class _HomePageState extends State<HomePage> {
 
   decrementPercentage() {
     setState(() {
-      int selectedItem = int.parse(selecteditem!);
-      percentage -= 0.1 * selectedItem;
+      percentage -= 0.1;
       if (percentage < 0.0) {
         percentage = 0.0;
       }
     });
+  }
+
+  @override
+  void initState() {
+    loadglasscountHive(); // TODO: implement initState
+    super.initState();
+  }
+
+  loadglasscountHive() async {
+    HiveDb db = HiveDb();
+    Box<UserstepdataModel> glassCountBox =
+        await Hive.openBox<UserstepdataModel>(db.stepCountBoxKey);
+    UserstepdataModel? model = glassCountBox.get('UserDetailsTracking');
+    if (model != null) {
+      selectedItemNotifier.value = model.waterglass; // Parse as a string
+    }
   }
 
   @override
@@ -77,7 +93,8 @@ class _HomePageState extends State<HomePage> {
           child: Text(
             'STAY HYDRATED',
             style: GoogleFonts.yellowtail(
-              textStyle: TextStyle(color: Colors.white, letterSpacing: 0.5),
+              textStyle:
+                  const TextStyle(color: Colors.white, letterSpacing: 0.5),
             ),
           ),
         ),
@@ -94,7 +111,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 40),
             MainCard(
                 formattedTime: formattedTime,
-                selectedItemNotifier: _selectedItemNotifier),
+                selectedItemNotifier: selectedItemNotifier),
             const SizedBox(height: 50),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -114,7 +131,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(right: 40),
-                  child: Container(
+                  child: SizedBox(
                     height: 120, // set the desired height
                     width: 120, // set the desired width
                     child: Card(
@@ -137,12 +154,17 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                   SizedBox(height: 30),
-                                  Text(
-                                    '${(int.parse(selecteditem!) * 200)}ml',
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18,
-                                    ),
+                                  ValueListenableBuilder(
+                                    valueListenable: selectedItemNotifier,
+                                    builder: (context, value, child) {
+                                      return Text(
+                                        '${(int.parse(value) * 200)}ml',
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18,
+                                        ),
+                                      );
+                                    },
                                   ),
                                 ],
                               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:water_tracking_app/Screens/homepage/home_page.dart';
 
 class AnalysisPageCardes extends StatefulWidget {
   const AnalysisPageCardes({super.key});
@@ -48,15 +49,20 @@ class _AnalysisPageCardesState extends State<AnalysisPageCardes> {
                 ),
               ),
             ),
-            const Positioned(
+            Positioned(
               top: 180,
               left: 30,
-              child: Text(
-                '2.1ltr',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.white,
-                ),
+              child: ValueListenableBuilder(
+                valueListenable: selectedItemNotifier,
+                builder: (context, value, child) {
+                  return Text(
+                    '${(int.parse(value) * 200)}ml',
+                    style: const TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),
+                  );
+                },
               ),
             )
           ],

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:water_tracking_app/Screens/goalpage/widgets/goalitemcontainer.dart';
+import 'package:water_tracking_app/Screens/homepage/home_page.dart';
 import 'package:water_tracking_app/db/functions/db_functions.dart';
 import 'package:water_tracking_app/model/stepcount_model.dart';
 
 class Addgoal extends StatefulWidget {
-  const Addgoal({Key? key, required this.selectedItemNotifier})
-      : super(key: key);
+  Addgoal({Key? key, required this.selecteditem}) : super(key: key);
 
-  final ValueNotifier<String?> selectedItemNotifier;
+  String selecteditem = '1';
 
   @override
   AddgoalState createState() => AddgoalState();
@@ -16,15 +16,12 @@ class Addgoal extends StatefulWidget {
 
 class AddgoalState extends State<Addgoal> {
   List<String> numofglass = ['1', '2', '3', '4', '5', '10', '15', '20'];
-  String? selecteditem = '1';
-  late String? selectedItemInContainer = selecteditem;
+  late String? selectedItemInContainer = widget.selecteditem;
   @override
   void initState() {
     super.initState();
     loadglasscountHive();
-    selecteditem = '1'; // Initialize selecteditem inside initState
-    widget.selectedItemNotifier.value = selecteditem;
-
+    widget.selecteditem = '1'; // Initialize selecteditem inside initState
     // Initialize the notifier
   }
 
@@ -34,9 +31,12 @@ class AddgoalState extends State<Addgoal> {
         await Hive.openBox<UserstepdataModel>(db.stepCountBoxKey);
     UserstepdataModel? model = glassCountBox.get('UserDetailsTracking');
     if (model != null) {
-      setState(() {
-        selecteditem = model.waterglass; // Parse as a string
-      });
+      selectedItemNotifier.value = model.waterglass;
+      if (mounted) {
+        setState(() {
+          widget.selecteditem = model.waterglass; // Parse as a string
+        });
+      }
     }
   }
 
@@ -77,7 +77,7 @@ class AddgoalState extends State<Addgoal> {
                 color: Colors.lightBlueAccent.shade100,
                 child: Center(
                     child: Text(
-                  selecteditem!,
+                  widget.selecteditem!,
                   style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 70,
@@ -106,7 +106,7 @@ class AddgoalState extends State<Addgoal> {
                         const Text('Number of Glasses'),
                         SingleChildScrollView(
                           child: DropdownButton<String>(
-                            value: selecteditem,
+                            value: widget.selecteditem,
                             items: numofglass.map((item) {
                               return DropdownMenuItem<String>(
                                 value: item,
@@ -115,13 +115,16 @@ class AddgoalState extends State<Addgoal> {
                               );
                             }).toList(),
                             onChanged: (item) {
-                              setState(() {
-                                selecteditem = item!;
-                                widget.selectedItemNotifier.value = item;
-                                // Update the selected glass count in Hive
-                                HiveDb().updateWaterGlassCount(
-                                    int.parse(selecteditem!));
-                              });
+                              selectedItemNotifier.value = item!;
+                              if (mounted) {
+                                setState(() {
+                                  widget.selecteditem = item!;
+                                  // widget.selectedItemNotifier.value = item;
+                                  // Update the selected glass count in Hive
+                                  HiveDb().updateWaterGlassCount(
+                                      int.parse(widget.selecteditem));
+                                });
+                              }
                             },
                           ),
                         ),

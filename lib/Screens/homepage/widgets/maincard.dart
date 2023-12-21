@@ -67,7 +67,7 @@ class MainCard extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Addgoal(selectedItemNotifier: selectedItemNotifier),
+                      builder: (context) => Addgoal(selecteditem: selectedItemNotifier.toString()),
                     ),
                   );
                 },
