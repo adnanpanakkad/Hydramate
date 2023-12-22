@@ -21,16 +21,15 @@ class BMIDetailsScreen extends StatelessWidget {
     }
     if (bmiValue < 24.9) return 'Congratulations! You have a normal BMI.';
     if (bmiValue < 29.9) {
-      return 'You are overweight. Consider starting a healthy diet and exercise routine.';
+      return 'You are overweight. Consider starting a healthy diet and exercise routine.try to archive 10000 steps per day';
     }
-    return 'You are obese. Seek medical advice to manage your weight.';
+    return 'You are obese. Seek medical advice to manage your weight and try to archive 20000 steps per day';
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        
         backgroundColor: Colors.lightBlueAccent.shade100,
         title: const Text('BMI Details'),
         centerTitle: true,
@@ -76,8 +75,8 @@ class BMIDetailsScreen extends StatelessWidget {
               const SizedBox(height: 8.0),
               Text(
                 getBMIStatus(),
-                style:
-                    const TextStyle(fontSize: 36.0, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                    fontSize: 36.0, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 24.0),
               const Text(
@@ -87,8 +86,8 @@ class BMIDetailsScreen extends StatelessWidget {
               const SizedBox(height: 8.0),
               Text(
                 bmiValue.toStringAsFixed(1),
-                style:
-                    const TextStyle(fontSize: 36.0, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                    fontSize: 36.0, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 44.0),
               const Text(

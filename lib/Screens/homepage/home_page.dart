@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:water_tracking_app/Screens/all_pages.dart';
-import 'package:water_tracking_app/Screens/goalpage/addwatergoal.dart';
 import 'package:water_tracking_app/Screens/homepage/functions/bmifunctions.dart';
 import 'package:water_tracking_app/Screens/homepage/widgets/appdrawer.dart';
 import 'package:water_tracking_app/Screens/homepage/widgets/glassaddbutton.dart';
@@ -86,7 +85,7 @@ class _HomePageState extends State<HomePage> {
             onPressed: () {
               bmipopup(context);
             },
-            icon: const Icon(Icons.medical_information),
+            icon: const Icon(Icons.calculate),
           ),
         ],
         title: Center(

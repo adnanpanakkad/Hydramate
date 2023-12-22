@@ -48,7 +48,10 @@ class Intro3 extends StatelessWidget {
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.lightBlueAccent.shade100),
-                  child: const Text('GET STARTED'),
+                  child: const Text(
+                    'GET STARTED',
+                    style: TextStyle(color: Colors.white),
+                  ),
                   onPressed: () {
                     Get.to(() => const Login());
                   })),

@@ -95,7 +95,7 @@ class NumericDefaultState extends State<NumericDefault> {
     return SfCartesianChart(
       title: ChartTitle(text: '$seriesName History'),
       plotAreaBorderWidth: 0,
-      legend: Legend(isVisible: true, position: LegendPosition.top),
+      legend: const Legend(isVisible: true, position: LegendPosition.top),
       primaryXAxis: CategoryAxis(
         title: AxisTitle(text: 'Day'),
         majorGridLines: MajorGridLines(width: 0),

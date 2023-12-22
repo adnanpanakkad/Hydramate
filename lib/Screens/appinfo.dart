@@ -16,7 +16,7 @@ class AppInfoPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'App Name: Your App Name',
+              'App Name: Water tracking app',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
@@ -26,7 +26,11 @@ class AppInfoPage extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              'Description: Write a brief description of your app here. Mention its purpose, features, and anything else relevant.',
+              'Description',
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              "The ultimate companion on your fitness journey. Whether you're a seasoned athlete or just starting out, our app is designed to help you achieve your health and wellness goals. Track your workouts, set personalized fitness plans, and stay motivated with real-time progress updates. With a user-friendly interface and comprehensive features, [Your App Name] is your go-to fitness app for a healthier, happier you. Download now and start your fitness adventure!",
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 10),
