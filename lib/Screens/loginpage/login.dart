@@ -4,6 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:water_tracking_app/Screens/all_pages.dart';
 import 'package:water_tracking_app/Screens/intro3.dart';
+import 'package:water_tracking_app/Screens/loginpage/widgets/textfield.dart';
 import 'package:water_tracking_app/Screens/signuppage/signup.dart';
 import 'package:water_tracking_app/db/functions/db_functions.dart';
 import 'package:water_tracking_app/main.dart';
@@ -28,7 +29,7 @@ class _LoginState extends State<Login> {
   }
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Form(
@@ -79,76 +80,16 @@ class _LoginState extends State<Login> {
                 ),
               ),
               const SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: SizedBox(
-                  height: 80,
-                  width: 500,
-                  child: Card(
-                    color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 5, top: 10),
-                      child: TextFormField(
-                        controller: _emailController,
-                        decoration: const InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Email Address',
-                          prefixIcon:
-                              Icon(Icons.mail_outlined, color: Colors.blue),
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'email is required';
-                          } else {
-                            return null;
-                          }
-                        },
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: ValueListenableBuilder<bool>(
-                  valueListenable: _obscureText,
-                  builder: (context, value, child) {
-                    return SizedBox(
-                      height: 80,
-                      width: 500,
-                      child: Card(
-                        color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 5, top: 10),
-                          child: TextFormField(
-                            obscureText: value,
-                            controller: _passwordController,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'Password',
-                              prefixIcon:
-                                  const Icon(Icons.lock, color: Colors.blue),
-                              suffixIcon: IconButton(
-                                icon: value
-                                    ? const Icon(Icons.visibility)
-                                    : const Icon(Icons.visibility_off),
-                                onPressed: togglePasswordVisibility,
-                              ),
-                            ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Password is required';
-                              } else {
-                                return null;
-                              }
-                            },
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
+              Emailfield(
+                  Controller: _emailController,
+                  Hinttext: 'Enter your email',
+                  warning: 'Email is required'),
+              Passwordfield(
+                  Controller: _passwordController,
+                  Hinttext: 'Enter your password',
+                  warning: 'Password required',
+                  obscureText: _obscureText,
+                  passwordvisibility: togglePasswordVisibility),
               const SizedBox(height: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -232,7 +173,8 @@ class _LoginState extends State<Login> {
 
     if (user != null) {
       if (password == user.password) {
-        Get.to(() => MainPage());
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                              builder: (ctx) => const MainPage()));
         final sharedPrefs = await SharedPreferences.getInstance();
         await sharedPrefs.setString(email_key_Name, email);
 

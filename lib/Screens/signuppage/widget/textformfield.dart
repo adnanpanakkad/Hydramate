@@ -36,6 +36,7 @@ class Textfield extends StatelessWidget {
                   return null;
                 }
               },
+              autovalidateMode: AutovalidateMode.onUserInteraction,
             ),
           ),
         ),

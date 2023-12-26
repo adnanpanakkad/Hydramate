@@ -6,7 +6,7 @@ import 'package:water_tracking_app/db/functions/db_functions.dart';
 import 'package:water_tracking_app/model/stepcount_model.dart';
 
 class Addgoal extends StatefulWidget {
-  Addgoal({Key? key, required this.selecteditem}) : super(key: key);
+  Addgoal( {Key? key, required this.selecteditem}) : super(key: key);
 
   String selecteditem = '1';
 

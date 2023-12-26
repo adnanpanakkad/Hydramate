@@ -4,6 +4,7 @@ import 'package:water_tracking_app/Screens/appinfo.dart';
 import 'dart:io';
 import 'package:water_tracking_app/Screens/homepage/functions/popup.dart';
 import 'package:water_tracking_app/Screens/privacy_policy.dart';
+import 'package:water_tracking_app/db/functions/db_functions.dart';
 
 class AppDrawer extends StatelessWidget {
   final String userName;
@@ -63,7 +64,7 @@ class AppDrawer extends StatelessWidget {
               color: Color.fromARGB(255, 79, 187, 238),
             ),
           ),
-          const ListTile(
+          ListTile(
             leading: Icon(Icons.delete),
             title: Text('Clear App Data'),
             // onTap: () async {
@@ -80,13 +81,6 @@ class AppDrawer extends StatelessWidget {
               Get.to(() => const AppInfoPage());
             },
           ),
-          // ListTile(
-          //   leading: const Icon(Icons.library_books),
-          //   title: const Text('Terms & Conditions'),
-          //   onTap: () {
-
-          //   },
-          // ),
           ListTile(
             leading: const Icon(Icons.privacy_tip),
             title: const Text('Privacy & Policy'),

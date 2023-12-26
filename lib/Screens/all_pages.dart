@@ -173,7 +173,7 @@ class MainPageState extends State<MainPage> {
 
   List<IconData> listOfIcons = [
     Icons.home_rounded,
-    Icons.favorite_rounded,
+    Icons.equalizer,
     Icons.person_rounded,
   ];
 
