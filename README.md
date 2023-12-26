@@ -1,6 +1,6 @@
 # water_tracking_app
 
-A new Flutter project.
+ latest Flutter project.
 
 ## Getting Started
 
