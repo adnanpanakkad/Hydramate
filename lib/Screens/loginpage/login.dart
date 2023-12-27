@@ -163,29 +163,33 @@ class _LoginState extends State<Login> {
   }
 
   Future<void> login() async {
-    final email = _emailController.text.trim();
-    final password = _passwordController.text.trim();
+  final email = _emailController.text.trim();
+  final password = _passwordController.text.trim();
 
-    HiveDb db = HiveDb();
-    Box userBox = await Hive.openBox(db.userBoxKey);
+  HiveDb db = HiveDb();
+  Box userBox = await Hive.openBox(db.userBoxKey);
 
-    UserdataModal? user = await userBox.get(email);
+  UserdataModal? user = await userBox.get(email);
 
-    if (user != null) {
-      if (password == user.password) {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                              builder: (ctx) => const MainPage()));
-        final sharedPrefs = await SharedPreferences.getInstance();
-        await sharedPrefs.setString(email_key_Name, email);
+  if (user != null) {
+    if (password == user.password) {
+      final sharedPrefs = await SharedPreferences.getInstance();
+      await sharedPrefs.setString(email_key_Name, email);
+      await sharedPrefs.setBool(Save_key_Name, true);
 
-        await sharedPrefs.setBool(Save_key_Name, true);
-      } else {
-        Get.snackbar('Password is wrong', '');
-      }
+      // Clear the navigation stack and push the MainPage
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (ctx) => const MainPage()),
+        (route) => false,
+      );
     } else {
-      print('Existing emails');
-      print(userBox.keys);
-      Get.snackbar('User does not exist', '');
+      Get.snackbar('Password is wrong', '');
     }
+  } else {
+    print('Existing emails');
+    print(userBox.keys);
+    Get.snackbar('User does not exist', '');
   }
+}
+
 }

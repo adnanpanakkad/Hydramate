@@ -36,7 +36,7 @@ class MainCard extends StatelessWidget {
               left: 10,
               child: ValueListenableBuilder(
                 valueListenable: formattedTime,
-                builder: (BuildContext context, String value, Widget) {
+                builder: (BuildContext context, String value, selectedItemInContainer) {
                   return Text(
                     value,
                     style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
