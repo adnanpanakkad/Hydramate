@@ -43,10 +43,10 @@ class HiveDb {
   }
 // waterglass
 
-  // Future<void> clearAllData() async {
-  //   await Hive.deleteBoxFromDisk(userBoxKey);
-  //   await Hive.deleteBoxFromDisk(stepCountBoxKey);
-  // }
+  Future<void> clearAllData() async {
+    await Hive.deleteBoxFromDisk(userBoxKey);
+    await Hive.deleteBoxFromDisk(stepCountBoxKey);
+  }
 }
 
 getUserImg() async {

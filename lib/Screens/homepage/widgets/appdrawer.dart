@@ -11,7 +11,7 @@ class AppDrawer extends StatelessWidget {
   final String userEmail;
   final ValueNotifier<String> imgPath;
 
-  AppDrawer({
+  const AppDrawer({
     required this.userName,
     required this.userEmail,
     required this.imgPath,
@@ -65,13 +65,13 @@ class AppDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.delete),
-            title: Text('Clear App Data'),
-            // onTap: () async {
-            //   // Add your logic for clearing app data
-            //   HiveDb db = HiveDb();
-            //   await db.clearAllData();
-            // },
+            leading: const Icon(Icons.delete),
+            title: const Text('Clear App Data'),
+            onTap: () async {
+              // Add your logic for clearing app data
+              HiveDb db = HiveDb();
+              await db.clearAllData();
+            },
           ),
           ListTile(
             leading: const Icon(Icons.report),
