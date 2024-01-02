@@ -15,11 +15,15 @@ class UserstepdataModel {
   DateTime dateIsToday;
   @HiveField(6)
   String waterglass;
+  @HiveField(7)
+  String waterglasspercentage;
   UserstepdataModel(
       {required this.dailystepCount,
       required this.totalSteps,
       required this.caloriesBurnedToday,
       required this.totalCaloriesBurned,
       required this.dateIsToday,
-      required this.waterglass});
+      required this.waterglass,
+      required this.waterglasspercentage,
+      });
 }

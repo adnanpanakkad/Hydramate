@@ -15,8 +15,10 @@ class Addgoal extends StatefulWidget {
 }
 
 class AddgoalState extends State<Addgoal> {
+    String selecteditem = '1';
+
   List<String> numofglass = ['1', '2', '3', '4', '5', '10', '15', '20'];
-  late String selectedItemInContainer = widget.selecteditem;
+  late String selectedItemInContainer = selecteditem;
   
   @override
 void initState() {
@@ -24,7 +26,7 @@ void initState() {
   loadglasscountHive();
   numofglass = numofglass.toSet().toList();
   setState(() {
-    selectedItemInContainer = widget.selecteditem;
+    selectedItemInContainer = selecteditem;
   });
 }
 
@@ -37,7 +39,7 @@ void initState() {
       selectedItemNotifier.value = model.waterglass;
       if (mounted) {
         setState(() {
-          widget.selecteditem = model.waterglass; // Parse as a string
+         selecteditem = model.waterglass; // Parse as a string
         });
       }
     }
@@ -109,7 +111,7 @@ void initState() {
                         const Text('Number of Glasses'),
                         SingleChildScrollView(
                           child: DropdownButton<String>(
-                            value: widget.selecteditem,
+                            value: selecteditem,
                             items: numofglass.map((item) {
                               return DropdownMenuItem<String>(
                                 value: item,
@@ -121,11 +123,11 @@ void initState() {
                               selectedItemNotifier.value = item!;
                               if (mounted) {
                                 setState(() {
-                                  widget.selecteditem = item;
+                                  selecteditem = item;
                                   //widget.selectedItemNotifier.value = item;
                                   // Update the selected glass count in Hive
                                   HiveDb().updateWaterGlassCount(
-                                      int.parse(widget.selecteditem));
+                                      int.parse(selecteditem));
                                 });
                               }
                             },

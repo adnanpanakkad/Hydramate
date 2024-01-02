@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:water_tracking_app/Screens/appinfo.dart';
-import 'dart:io';
 import 'package:water_tracking_app/Screens/homepage/functions/popup.dart';
 import 'package:water_tracking_app/Screens/privacy_policy.dart';
 import 'package:water_tracking_app/db/functions/db_functions.dart';
@@ -12,6 +11,7 @@ class AppDrawer extends StatelessWidget {
   final ValueNotifier<String> imgPath;
 
   const AppDrawer({
+    super.key,
     required this.userName,
     required this.userEmail,
     required this.imgPath,
@@ -20,48 +20,16 @@ class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      width: 250,
       backgroundColor: Colors.white,
       child: ListView(
         padding: EdgeInsets.zero,
-        children: <Widget>[
-          UserAccountsDrawerHeader(
-            accountName: Text(
-              userName,
-              style: const TextStyle(color: Colors.black),
-            ),
-            accountEmail: Text(
-              userEmail,
-              style: const TextStyle(color: Colors.black),
-            ),
-            currentAccountPicture: CircleAvatar(
-              child: CircleAvatar(
-                radius: 60,
-                backgroundColor: Colors.green,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: ValueListenableBuilder(
-                    valueListenable: imgPath,
-                    builder: (BuildContext context, file, _) {
-                      return imgPath.value.isEmpty
-                          ? Image.asset(
-                              'assets/images/pokiman.png',
-                              width: 100,
-                              height: 100,
-                              fit: BoxFit.cover,
-                            )
-                          : Image.file(
-                              File(file),
-                              width: 100,
-                              height: 100,
-                              fit: BoxFit.cover,
-                            );
-                    },
-                  ),
-                ),
-              ),
-            ),
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 79, 187, 238),
+        children: [
+          const SizedBox(height: 50),
+          const ListTile(
+            title: Text(
+              'Settings',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
             ),
           ),
           ListTile(
@@ -99,14 +67,14 @@ class AppDrawer extends StatelessWidget {
               popup(context);
             },
           ),
-          const SizedBox(height: 220),
+          const SizedBox(height: 380),
           const Column(
             children: [
               Text(
                 'version',
                 style: TextStyle(fontSize: 15, color: Colors.grey),
               ),
-              Text('1.0.0'),
+              Text('1.1.0'),
             ],
           ),
         ],

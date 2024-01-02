@@ -17,7 +17,6 @@ class Profilepage extends StatefulWidget {
 class _ProfilepageState extends State<Profilepage> {
   @override
   Widget build(BuildContext context) {
-    getUserDatas();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),

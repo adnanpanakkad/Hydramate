@@ -4,7 +4,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:water_tracking_app/Screens/all_pages.dart';
-import 'package:water_tracking_app/Screens/homepage/home_page.dart';
 import 'package:water_tracking_app/main.dart';
 import 'package:water_tracking_app/model/data_model.dart';
 import 'package:water_tracking_app/model/stepcount_model.dart';
