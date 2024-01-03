@@ -29,46 +29,48 @@ class Intro1 extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          const SizedBox(height: 110),
-          Center(child: Image.asset('assets/images/Bottle of water-bro 1.jpg')),
-          const SizedBox(height: 50),
-          const Text(
-            'Track your daily water',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-          ),
-          const Text(
-            'intake with Us.',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-          ),
-          const SizedBox(height: 30),
-          const Text(
-            'Achieve your hydration goals with a simple',
-            style: TextStyle(color: Colors.grey),
-          ),
-          const Text(
-            'tap!',
-            style: TextStyle(color: Colors.grey),
-          ),
-          const SizedBox(height: 50),
-          SizedBox(
-            width: 280.0,
-            height: 60.0,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.lightBlueAccent.shade100,
-              ),
-              child: const Text(
-                'NEXT',
-                style: TextStyle(color: Colors.white),
-              ),
-              onPressed: () {
-                Get.to(() => const Intro2());
-              },
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 110),
+            Center(child: Image.asset('assets/images/Bottle of water-bro 1.jpg')),
+            const SizedBox(height: 50),
+            const Text(
+              'Track your daily water',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
             ),
-          ),
-        ],
+            const Text(
+              'intake with Us.',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+            ),
+            const SizedBox(height: 30),
+            const Text(
+              'Achieve your hydration goals with a simple',
+              style: TextStyle(color: Colors.grey),
+            ),
+            const Text(
+              'tap!',
+              style: TextStyle(color: Colors.grey),
+            ),
+            const SizedBox(height: 50),
+            SizedBox(
+              width: 280.0,
+              height: 60.0,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.lightBlueAccent.shade100,
+                ),
+                child: const Text(
+                  'NEXT',
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () {
+                  Get.to(() => const Intro2());
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

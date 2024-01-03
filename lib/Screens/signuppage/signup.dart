@@ -65,22 +65,37 @@ class _SingnupState extends State<Singnup> {
               Textfield(
                   Controller: _nameController,
                   Hinttext: 'Enter your name',
-                  warning: 'name is required'),
+                  warning: 'name is required',
+                  length: 50,
+                  keybordtype: null,
+                  textvisibility: null),
               const SizedBox(height: 40),
               Textfield(
-                  Controller: _ageController,
-                  Hinttext: 'Enter your age',
-                  warning: 'age is required'),
+                Controller: _ageController,
+                Hinttext: 'Enter your age',
+                warning: 'age is required',
+                length: 2,
+                keybordtype: TextInputType.number,
+                textvisibility: null,
+              ),
               const SizedBox(height: 40),
               Textfield(
-                  Controller: _emailController,
-                  Hinttext: 'Enter your email',
-                  warning: 'email is required'),
+                Controller: _emailController,
+                Hinttext: 'Enter your email',
+                warning: 'email is required',
+                length: 100,
+                keybordtype: null,
+                textvisibility: null,
+              ),
               const SizedBox(height: 40),
               Textfield(
-                  Controller: _passwordController,
-                  Hinttext: 'Enter your password',
-                  warning: 'password is required'),
+                Controller: _passwordController,
+                Hinttext: 'Enter your password',
+                warning: 'password is required',
+                length: 8,
+                keybordtype: null,
+                textvisibility: true,
+              ),
               const SizedBox(height: 40),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -125,7 +140,7 @@ class _SingnupState extends State<Singnup> {
         age.isNotEmpty &&
         email.isNotEmpty) {
       if (user != null) {
-        Get.snackbar('user exists','');
+        Get.snackbar('user exists', '');
       } else {
         UserdataModal model = UserdataModal(
             name: username, age: age, email: email, password: password);

@@ -21,7 +21,7 @@ class UserstepdataModelAdapter extends TypeAdapter<UserstepdataModel> {
       totalSteps: fields[2] as String,
       caloriesBurnedToday: fields[3] as String,
       totalCaloriesBurned: fields[4] as String,
-      dateIsToday: fields[5] as DateTime,
+      glasspercentage: fields[5] as DateTime,
       waterglass: fields[6] as String,
     );
   }
@@ -39,7 +39,7 @@ class UserstepdataModelAdapter extends TypeAdapter<UserstepdataModel> {
       ..writeByte(4)
       ..write(obj.totalCaloriesBurned)
       ..writeByte(5)
-      ..write(obj.dateIsToday)
+      ..write(obj.glasspercentage)
       ..writeByte(6)
       ..write(obj.waterglass);
   }

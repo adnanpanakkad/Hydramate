@@ -32,7 +32,7 @@ void main() async {
           totalSteps: '0',
           caloriesBurnedToday: '0',
           totalCaloriesBurned: '0',
-          dateIsToday: DateTime.now(),
+          glasspercentage: '0',
           waterglass: '0');
       await stepCountBox.put('UserDetailsTracking', newModel);
     }

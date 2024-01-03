@@ -8,43 +8,60 @@ import 'package:water_tracking_app/Screens/updatepage/updateprofile.dart';
 import 'package:water_tracking_app/main.dart';
 
 class Profilepage extends StatefulWidget {
-  const Profilepage({super.key});
+  const Profilepage({Key? key}) : super(key: key);
 
   @override
-  State<Profilepage> createState() => _ProfilepageState();
+  _ProfilepageState createState() => _ProfilepageState();
 }
 
 class _ProfilepageState extends State<Profilepage> {
+  late Future<void> userDataFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    userDataFuture = getUserDatas();
+  }
+
   @override
   Widget build(BuildContext context) {
-    getUserDatas();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(height: 30),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: FutureBuilder(
+          future: userDataFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            } else {
+              return SingleChildScrollView(
+                child: Column(
                   children: [
-                    const Text(
-                      'My Profile',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    const SizedBox(height: 30),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'My Profile',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15),
+                          ),
+                          IconButton(
+                            onPressed: () =>
+                                Get.to(() => const Updateprofile()),
+                            icon: const Icon(
+                              Icons.edit,
+                              color: Colors.blue,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    IconButton(
-                        onPressed: () => Get.to(() => const Updateprofile()),
-                        icon: const Icon(
-                          Icons.edit,
-                          color: Colors.blue,
-                        )),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 50),
+                    const SizedBox(height: 50),
               ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child: ValueListenableBuilder(
@@ -65,65 +82,68 @@ class _ProfilepageState extends State<Profilepage> {
                             );
                     },
                   )),
-              const SizedBox(height: 50),
-              const Padding(
-                padding: EdgeInsets.only(right: 230),
-                child: Text(
-                  'Name',
-                  style: TextStyle(fontWeight: FontWeight.w800),
-                ),
-              ),
-              const SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.only(left: 25),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Profilefield(text: userName),
+                    const SizedBox(height: 50),
+                    const Padding(
+                      padding: EdgeInsets.only(right: 230),
+                      child: Text(
+                        'Name',
+                        style: TextStyle(fontWeight: FontWeight.w800),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 25),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Profilefield(text: userName),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 50),
+                    const Padding(
+                      padding: EdgeInsets.only(right: 230),
+                      child: Text(
+                        'Email',
+                        style: TextStyle(fontWeight: FontWeight.w800),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 25),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Profilefield(text: userEmail),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 50),
+                    const Padding(
+                      padding: EdgeInsets.only(right: 230),
+                      child: Text(
+                        'Age',
+                        style: TextStyle(fontWeight: FontWeight.w800),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 25),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Profilefield(text: userAge),
+                        ],
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 25),
+                    ),
                   ],
                 ),
-              ),
-              const SizedBox(height: 50),
-              const Padding(
-                padding: EdgeInsets.only(right: 230),
-                child: Text(
-                  'Email',
-                  style: TextStyle(fontWeight: FontWeight.w800),
-                ),
-              ),
-              const SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.only(left: 25),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Profilefield(text: userEmail),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 50),
-              const Padding(
-                padding: EdgeInsets.only(right: 230),
-                child: Text(
-                  'Age',
-                  style: TextStyle(fontWeight: FontWeight.w800),
-                ),
-              ),
-              const SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.only(left: 25),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Profilefield(text: userAge),
-                  ],
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 25),
-              ),
-            ],
-          ),
+              );
+            }
+          },
         ),
       ),
     );

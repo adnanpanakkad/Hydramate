@@ -10,53 +10,55 @@ class Intro2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          const SizedBox(height: 50),
-          Row(
-            children: [
-              IconButton(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 50),
+            Row(
+              children: [
+                IconButton(
+                    onPressed: () {
+                      Get.to(() => const Intro1());
+                    },
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      color: Colors.blue,
+                    )),
+              ],
+            ),
+            const SizedBox(height: 100),
+            Center(child: Image.asset('assets/images/World water day-bro 1.jpg')),
+            const SizedBox(height: 50),
+            const Text(
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                'Smart Reminders'),
+            const Text(
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                'Tailored to You'),
+            const SizedBox(height: 30),
+            const Text(
+                style: TextStyle(color: Colors.grey),
+                'Quick and easy to set your hydration goal &'),
+            const Text(
+                style: TextStyle(color: Colors.grey),
+                'then track your daily water intake progress.'),
+            const SizedBox(height: 50),
+            SizedBox(
+              width: 280.0,
+              height: 60.0,
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.lightBlueAccent.shade100),
+                  child: const Text(
+                    'NEXT',
+                    style: TextStyle(color: Colors.white),
+                  ),
                   onPressed: () {
-                    Get.to(() => const Intro1());
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back,
-                    color: Colors.blue,
-                  )),
-            ],
-          ),
-          const SizedBox(height: 100),
-          Center(child: Image.asset('assets/images/World water day-bro 1.jpg')),
-          const SizedBox(height: 50),
-          const Text(
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-              'Smart Reminders'),
-          const Text(
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-              'Tailored to You'),
-          const SizedBox(height: 30),
-          const Text(
-              style: TextStyle(color: Colors.grey),
-              'Quick and easy to set your hydration goal &'),
-          const Text(
-              style: TextStyle(color: Colors.grey),
-              'then track your daily water intake progress.'),
-          const SizedBox(height: 50),
-          SizedBox(
-            width: 280.0,
-            height: 60.0,
-            child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.lightBlueAccent.shade100),
-                child: const Text(
-                  'NEXT',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: () {
-                  Get.to(() => const Intro3());
-                }),
-          ),
-        ],
+                    Get.to(() => const Intro3());
+                  }),
+            ),
+          ],
+        ),
       ),
     );
   }
