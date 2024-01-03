@@ -8,10 +8,17 @@ class Intro2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
+=======
+    return SingleChildScrollView(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Column(
+>>>>>>> 19fd47af670458b555788eda60199e91425efe74
           children: [
             const SizedBox(height: 50),
             Row(

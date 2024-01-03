@@ -23,13 +23,14 @@ class UserstepdataModelAdapter extends TypeAdapter<UserstepdataModel> {
       totalCaloriesBurned: fields[4] as String,
       glasspercentage: fields[5] as DateTime,
       waterglass: fields[6] as String,
+      waterglasspercentage: fields[7] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, UserstepdataModel obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(1)
       ..write(obj.dailystepCount)
       ..writeByte(2)
@@ -41,7 +42,9 @@ class UserstepdataModelAdapter extends TypeAdapter<UserstepdataModel> {
       ..writeByte(5)
       ..write(obj.glasspercentage)
       ..writeByte(6)
-      ..write(obj.waterglass);
+      ..write(obj.waterglass)
+      ..writeByte(7)
+      ..write(obj.waterglasspercentage);
   }
 
   @override

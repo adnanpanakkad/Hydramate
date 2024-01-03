@@ -2,8 +2,14 @@
 <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
 <uses-permission android:name="android.permission.INTERNET"/>
 <uses-permission android:name="android.permission.BODY_SENSORS" />
+<<<<<<< HEAD
+=======
+<uses-permission
+     android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+     android:maxSdkVersion="18" />
+>>>>>>> 19fd47af670458b555788eda60199e91425efe74
     <application
-        android:label="water_tracking_app"
+        android:label="Hydramate"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
