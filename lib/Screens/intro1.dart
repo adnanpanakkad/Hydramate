@@ -8,7 +8,6 @@ class Intro1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -40,39 +39,6 @@ class Intro1 extends StatelessWidget {
               'Track your daily water',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
             ),
-=======
-    return SingleChildScrollView(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: Colors.transparent,
-          actions: [
-            TextButton(
-              onPressed: () {
-                Get.to(() => const Login());
-              },
-              child: Text(
-                'SKIP',
-                style: TextStyle(
-                  color: Colors.lightBlueAccent.shade100,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ],
-        ),
-        body: Column(
-          children: [
-            const SizedBox(height: 110),
-            Center(child: Image.asset('assets/images/Bottle of water-bro 1.jpg')),
-            const SizedBox(height: 50),
-            const Text(
-              'Track your daily water',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-            ),
->>>>>>> 19fd47af670458b555788eda60199e91425efe74
             const Text(
               'intake with Us.',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
