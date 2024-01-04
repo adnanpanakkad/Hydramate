@@ -32,6 +32,7 @@ class _HomePageState extends State<HomePage> {
           archivePopup(context);
         }
       }
+      HiveDb().updateGlassPercentage(percentage);
     });
   }
 
@@ -41,12 +42,13 @@ class _HomePageState extends State<HomePage> {
       if (percentage < 0.0) {
         percentage = 0.0;
       }
+      HiveDb().updateGlassPercentage(percentage);
     });
   }
 
   @override
   void initState() {
-    loadglasscountHive(); 
+    loadglasscountHive();
     super.initState();
   }
 
@@ -59,6 +61,15 @@ class _HomePageState extends State<HomePage> {
       selectedItemNotifier.value = model.waterglass; // Parse as a string
     }
   }
+
+ void loadglasspercent() async {
+ Box glassPercentBox = Hive.box<UserstepdataModel>('STEPCOUNTBOX');
+ UserstepdataModel? model = glassPercentBox.get('UserDetailsTracking');
+ if (model != null) {
+  percentage = model.glasspercent as double;
+ }
+}
+
 
   @override
   Widget build(BuildContext context) {

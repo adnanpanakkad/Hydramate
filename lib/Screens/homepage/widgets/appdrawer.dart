@@ -32,15 +32,15 @@ class AppDrawer extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
             ),
           ),
-          ListTile(
-            leading: const Icon(Icons.delete),
-            title: const Text('Clear App Data'),
-            onTap: () async {
-              // Add your logic for clearing app data
-              HiveDb db = HiveDb();
-              await db.clearAllData();
-            },
-          ),
+          // ListTile(
+          //   leading: const Icon(Icons.delete),
+          //   title: const Text('Clear App Data'),
+          //   onTap: () async {
+          //     // Add your logic for clearing app data
+          //     HiveDb db = HiveDb();
+          //     await db.clearAllData();
+          //   },
+          // ),
           ListTile(
             leading: const Icon(Icons.report),
             title: const Text('App info'),

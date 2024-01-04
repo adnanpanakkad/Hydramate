@@ -15,8 +15,7 @@ class Profilepage extends StatefulWidget {
 }
 
 class _ProfilepageState extends State<Profilepage> {
-  late Future<void> userDataFuture;
-
+ late Future<void> userDataFuture = Future.value();
   @override
   void initState() {
     super.initState();
@@ -32,7 +31,7 @@ class _ProfilepageState extends State<Profilepage> {
           future: userDataFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
+              return Center(child: CircularProgressIndicator());
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else {

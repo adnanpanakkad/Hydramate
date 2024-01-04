@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:water_tracking_app/Screens/all_pages.dart';
 import 'package:water_tracking_app/Screens/splashscreen.dart';
 import 'package:water_tracking_app/db/functions/db_functions.dart';
 import 'package:water_tracking_app/model/data_model.dart';
@@ -32,8 +31,9 @@ void main() async {
           totalSteps: '0',
           caloriesBurnedToday: '0',
           totalCaloriesBurned: '0',
-          glasspercentage: '0',
-          waterglass: '0');
+          glasspercent: '0',
+          waterglass: '0',
+          waterglasspercentage: '0');
       await stepCountBox.put('UserDetailsTracking', newModel);
     }
   }
@@ -41,13 +41,6 @@ void main() async {
   Box userBox = await Hive.openBox(db.userBoxKey);
 
   final sharedPrefs = await SharedPreferences.getInstance();
-
-  // String email = sharedPrefs.getString(email_key_Name)!;
-  // UserdataModal user = await userBox.get(email);
-  // userName = user.name;
-  // userAge = user.age;
-  // userEmail = user.email;
-  await getUserDatas();
 }
 
 class MyApp extends StatelessWidget {

@@ -12,7 +12,7 @@ class UserstepdataModel {
   @HiveField(4)
   String totalCaloriesBurned;
   @HiveField(5)
-  dynamic glasspercentage;
+  dynamic glasspercent;
   @HiveField(6)
   String waterglass;
   UserstepdataModel(
@@ -20,7 +20,7 @@ class UserstepdataModel {
       required this.totalSteps,
       required this.caloriesBurnedToday,
       required this.totalCaloriesBurned,
-      required this.glasspercentage,
-      required this.waterglass,
-      });
+      required this.glasspercent,
+      required this.waterglass, required String waterglasspercentage});
 }
+

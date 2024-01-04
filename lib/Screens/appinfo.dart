@@ -35,12 +35,12 @@ class AppInfoPage extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              'Developer: Adnan',
+              'Developer: Your Name',
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 10),
             Text(
-              'Contact: adnancpanakkad@gmail.com',
+              'Contact: your.email@example.com',
               style: TextStyle(fontSize: 16),
             ),
             // Add more information as needed
