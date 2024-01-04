@@ -150,7 +150,10 @@ class _SingnupState extends State<Singnup> {
         await sharedPrefs.setString(email_key_Name, model.email);
         await sharedPrefs.setBool(Save_key_Name, true);
 
-        Get.to(() => const MainPage());
+        // Get.to(() => const MainPage());
+        // ignore: use_build_context_synchronously
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (ctx) => const MainPage()));
       }
     } else {
       Get.snackbar('fill the fields', '');

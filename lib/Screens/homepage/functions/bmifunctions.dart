@@ -77,8 +77,8 @@ bmipopup(BuildContext context) {
   Future<void> archivePopup(BuildContext context) async {
     AwesomeDialog(
       context: context,
-      dialogType: DialogType.SUCCES,
-      animType: AnimType.BOTTOMSLIDE,
+      dialogType: DialogType.success,
+      animType: AnimType.bottomSlide,
       title: 'Congratulations!',
       desc: 'Archived your goal today',
       btnOkText: 'Okay',

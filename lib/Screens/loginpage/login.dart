@@ -179,10 +179,10 @@ class _LoginState extends State<Login> {
         await sharedPrefs.setBool(Save_key_Name, true);
 
         // Clear the navigation stack and push the MainPage
-        // Navigator.of(context).pushReplacement(
-        //   MaterialPageRoute(builder: (ctx) => const MainPage()),
-        // );
-        Get.to(() => MainPage());
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (ctx) => const MainPage()),
+        );
+        // Get.to(() => MainPage());
       } else {
         Get.snackbar('Password is wrong', '');
       }

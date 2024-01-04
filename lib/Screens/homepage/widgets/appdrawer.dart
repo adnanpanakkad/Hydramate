@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:water_tracking_app/Screens/appinfo.dart';
 import 'package:water_tracking_app/Screens/homepage/functions/popup.dart';
 import 'package:water_tracking_app/Screens/privacy_policy.dart';
-import 'package:water_tracking_app/db/functions/db_functions.dart';
 
 class AppDrawer extends StatelessWidget {
   final String userName;
@@ -32,20 +32,12 @@ class AppDrawer extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
             ),
           ),
-          // ListTile(
-          //   leading: const Icon(Icons.delete),
-          //   title: const Text('Clear App Data'),
-          //   onTap: () async {
-          //     // Add your logic for clearing app data
-          //     HiveDb db = HiveDb();
-          //     await db.clearAllData();
-          //   },
-          // ),
           ListTile(
             leading: const Icon(Icons.report),
-            title: const Text('App info'),
+            title: const Text('App Info'),
             onTap: () {
               // Add your logic for displaying app info
+              Navigator.pop(context);
               Get.to(() => const AppInfoPage());
             },
           ),
@@ -53,7 +45,16 @@ class AppDrawer extends StatelessWidget {
             leading: const Icon(Icons.privacy_tip),
             title: const Text('Privacy & Policy'),
             onTap: () {
+              Navigator.pop(context);
               Get.to(() => const PrivacyPolicyPage());
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.share),
+            title: const Text('Share App'),
+            onTap: () {
+              Navigator.pop(context);
+              Share.share('https://www.amazon.com/dp/B0CR49V31G/ref=apps_sf_sta');
             },
           ),
           ListTile(
@@ -64,6 +65,8 @@ class AppDrawer extends StatelessWidget {
             ),
             onTap: () {
               // Add your logic for logging out
+              Navigator.pop(context);
+
               popup(context);
             },
           ),
