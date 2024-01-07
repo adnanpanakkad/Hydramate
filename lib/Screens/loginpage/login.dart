@@ -179,6 +179,7 @@ class _LoginState extends State<Login> {
         await sharedPrefs.setBool(Save_key_Name, true);
 
         // Clear the navigation stack and push the MainPage
+        // ignore: use_build_context_synchronously
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (ctx) => const MainPage()),
         );

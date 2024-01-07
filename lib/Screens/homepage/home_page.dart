@@ -49,6 +49,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     loadglasscountHive();
+    loadglasspercent();
     super.initState();
   }
 
@@ -62,14 +63,17 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
- void loadglasspercent() async {
- Box glassPercentBox = Hive.box<UserstepdataModel>('STEPCOUNTBOX');
- UserstepdataModel? model = glassPercentBox.get('UserDetailsTracking');
- if (model != null) {
-  percentage = model.glasspercent as double;
- }
-}
-
+  loadglasspercent() async {
+//  Box<UserstepdataModel> glassPercentBox = Hive.box<UserstepdataModel>('STEPCOUNTBOX');
+    Box<UserstepdataModel> glassPercentBox =
+        await Hive.openBox<UserstepdataModel>(HiveDb().stepCountBoxKey);
+    UserstepdataModel? model = glassPercentBox.get('UserDetailsTracking');
+    if (model != null) {
+      setState(() {
+        percentage = model.glasspercent as double;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

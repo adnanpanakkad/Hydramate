@@ -36,7 +36,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> gotosplash() async {
     await Future.delayed(Duration(seconds: 3));
-    Get.to(() => const Intro1());
+    // Get.to(() => const Intro1());
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (ctx) => const Intro1()));
   }
 
   checkUserLoggedIn() async {

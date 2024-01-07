@@ -28,7 +28,8 @@ class Intro3 extends StatelessWidget {
             ),
             const SizedBox(height: 100),
             Center(
-                child: Image.asset('assets/images/Bottle of water-rafiki 1.jpg')),
+                child:
+                    Image.asset('assets/images/Bottle of water-rafiki 1.jpg')),
             const SizedBox(height: 50),
             const Text(
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
@@ -54,7 +55,9 @@ class Intro3 extends StatelessWidget {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () {
-                      Get.to(() => const Login());
+                      // Get.to(() => const Login());
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (ctx) => const Login()));
                     })),
           ],
         ),

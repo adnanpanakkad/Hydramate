@@ -16,7 +16,9 @@ class Intro1 extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () {
-              Get.to(() => const Login());
+              // Get.to(() => const Login());
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (ctx) => const Login()));
             },
             child: Text(
               'SKIP',
@@ -33,7 +35,8 @@ class Intro1 extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 110),
-            Center(child: Image.asset('assets/images/Bottle of water-bro 1.jpg')),
+            Center(
+                child: Image.asset('assets/images/Bottle of water-bro 1.jpg')),
             const SizedBox(height: 50),
             const Text(
               'Track your daily water',
@@ -65,7 +68,9 @@ class Intro1 extends StatelessWidget {
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {
-                  Get.to(() => const Intro2());
+                  // Get.to(() => const Intro2());
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (ctx) => const Intro2()));
                 },
               ),
             ),

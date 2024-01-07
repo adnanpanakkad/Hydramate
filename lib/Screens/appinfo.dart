@@ -21,7 +21,7 @@ class AppInfoPage extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              'Version: 1.0.0', // Replace with your app version
+              'Version: 1.1.0', // Replace with your app version
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 10),

@@ -27,7 +27,8 @@ class Intro2 extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 100),
-            Center(child: Image.asset('assets/images/World water day-bro 1.jpg')),
+            Center(
+                child: Image.asset('assets/images/World water day-bro 1.jpg')),
             const SizedBox(height: 50),
             const Text(
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
@@ -54,7 +55,9 @@ class Intro2 extends StatelessWidget {
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () {
-                    Get.to(() => const Intro3());
+                    // Get.to(() => const Intro3());
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (ctx) => const Intro3()));
                   }),
             ),
           ],
