@@ -1,6 +1,6 @@
-# water_tracking_app
+# Hydramte
 
- latest Flutter project.
+This is my first  Flutter project.Basicaly this app is using for calculating your daya today water intake and also the daily steptracking.it is a minimal fitness app.
 
 ## Getting Started
 
