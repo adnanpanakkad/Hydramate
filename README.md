@@ -2,6 +2,8 @@
 
 This is my first  Flutter project.Basicaly this app is using for calculating your daya today water intake and also the daily steptracking.it is a minimal fitness app.
 
+Get Hydramate from the Amazon Appstore. Check it out - https://www.amazon.com/dp/B0CR49V31G/ref=apps_sf_sta
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
